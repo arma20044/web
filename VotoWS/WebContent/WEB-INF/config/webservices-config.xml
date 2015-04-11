@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+  xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <!-- publishes WSDL contract based on the given XML schema -->
+  <!--
+    <bean id="personService"
+    class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+    <property name="schema"> <bean
+    class="org.springframework.xml.xsd.SimpleXsdSchema"
+    p:xsd="/WEB-INF/personService.xsd"> </bean> </property> <property
+    name="portTypeName" value="personInterface" /> <property
+    name="locationUri"
+    value="http://localhost:18080/gfvws01/ws/personService" /> <property
+    name="targetNamespace" value="http://bar.foo" /> </bean>
+  -->
+  <bean
+    id="votoService"
+    class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+    <property
+      name="schema">
+      <bean
+        class="org.springframework.xml.xsd.SimpleXsdSchema"
+        p:xsd="/WEB-INF/votoService.xsd">
+      </bean>
+    </property>
+    <property
+      name="portTypeName"
+      value="votoInterface"/>
+    <property
+      name="locationUri"
+      value="http://localhost:8080/VotoWS/ws/votoService"/>
+    <property
+      name="targetNamespace"
+      value="http://voto.ucsa.edu.py/co"/>
+  </bean>
+
+  <!-- uses annotations to map XML requests to endpoint methods -->
+  <bean
+    class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping"/>
+  <!--
+    passes endpoint method arguments and returned objects to JAXB
+    marshaller
+  -->
+  <bean
+    class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
+    <property
+      name="marshaller"
+      ref="jaxbMarshaller"/>
+    <property
+      name="unmarshaller"
+      ref="jaxbMarshaller"/>
+  </bean>
+  <!--
+    uses JAXB annotations to marshall between XML messages and Java
+    objects
+  -->
+  <bean
+    id="jaxbMarshaller"
+    class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+    <property
+      name="schema"
+      value="/WEB-INF/votoService.xsd">
+    </property>
+    <property
+      name="classesToBeBound">
+      <list>
+     
+        <value>py.edu.ucsa.voto.ws.schema.beans.ConsultarRequest
+        </value>
+ 
+        <value>py.edu.ucsa.voto.ws.schema.beans.ConsultarResponse
+        </value>
+        
+          <value>py.edu.ucsa.voto.ws.schema.beans.VotarRequest
+        </value>
+ 
+        <value>py.edu.ucsa.voto.ws.schema.beans.VotarResponse
+        </value>
+        
+        <value>py.edu.ucsa.voto.ws.schema.beans.AutenticarResponse
+        </value>
+        
+          <value>py.edu.ucsa.voto.ws.schema.beans.AutenticarRequest
+        </value>
+        <value>py.edu.ucsa.voto.ws.schema.beans.QueryGenericoRequest</value>
+        
+        <value>py.edu.ucsa.voto.ws.schema.beans.QueryGenericoResponse</value>
+ 
+      </list>
+    </property>
+  </bean>
+
+  <!-- parses and builds SOAP messages -->
+  <bean
+    class="org.springframework.ws.soap.axiom.AxiomSoapMessageFactory"/>
+  <!--
+    <bean id="person"
+    class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition"
+    p:portTypeName="Person" p:locationUri="/personService/"
+    p:requestSuffix="-request" p:responseSuffix="-response"> <property
+    name="schema"> <bean
+    class="org.springframework.xml.xsd.SimpleXsdSchema"
+    p:xsd="classpath:/person.xsd" /> </property> </bean> <bean
+    class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping">
+    <description>An endpoint mapping strategy that looks for @Endpoint
+    and @PayloadRoot annotations.</description> </bean> <bean
+    class="org.springframework.ws.server.endpoint.adapter.MarshallingMethodEndpointAdapter">
+    <description>Enables the MessageDispatchServlet to invoke methods
+    requiring OXM marshalling.</description> <constructor-arg
+    ref="marshaller" /> </bean> <bean id="marshaller"
+    class="org.springframework.oxm.jaxb.Jaxb2Marshaller"
+    p:contextPath="py.gov.ande.gfv.ws.schema.beans" />
+  -->
+</beans>
