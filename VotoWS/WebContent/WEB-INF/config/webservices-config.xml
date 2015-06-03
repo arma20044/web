@@ -34,9 +34,17 @@
     <property
       name="portTypeName"
       value="votoInterface"/>
-    <property
+      
+     <!--  maquina virtual INICIO -->
+<!--     <property
       name="locationUri"
-      value="http://localhost:8080/VotoWS/ws/votoService"/>
+      value="http://192.168.1.2:8080/VotoWS/ws/votoService"/> -->
+     <!--  maquina virtual FIN -->
+     
+         <property
+      name="locationUri"
+      value="http://voto.ws:8080/VotoWS/ws/votoService"/>
+      
     <property
       name="targetNamespace"
       value="http://voto.ucsa.edu.py/co"/>

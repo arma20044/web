@@ -36,10 +36,15 @@
       name="jdbcUrl"
       value="jdbc:postgresql://192.168.56.101:5432/gfvws" />
       -->
-    <property
+      <!-- maquina virtual INICIO -->
+<!--     <property
       name="jdbcUrl"
-      value="jdbc:postgresql://localhost:5432/VOTOPY" />
-     
+      value="jdbc:postgresql://192.168.1.2:5432/VOTOPY" /> -->
+     <!-- maquina virtual FIN -->
+      <property
+      name="jdbcUrl"
+      value="jdbc:postgresql://voto.db:5432/VOTOPY" />
+      
     <property
       name="user"
       value="ucsa2014" />
