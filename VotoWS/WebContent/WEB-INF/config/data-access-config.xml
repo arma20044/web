@@ -43,7 +43,7 @@
      <!-- maquina virtual FIN -->
       <property
       name="jdbcUrl"
-      value="jdbc:postgresql://voto.db:5432/VOTOPY" />
+      value="jdbc:postgresql://localhost:5432/VOTOPY" />
       
     <property
       name="user"
