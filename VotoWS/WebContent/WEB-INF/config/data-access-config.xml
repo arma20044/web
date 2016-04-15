@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-  xmlns="http://www.springframework.org/schema/beans"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:p="http://www.springframework.org/schema/p"
-  xmlns:aop="http://www.springframework.org/schema/aop"
-  xmlns:context="http://www.springframework.org/schema/context"
-  xmlns:tx="http://www.springframework.org/schema/tx"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context 
                            http://www.springframework.org/schema/context/spring-context.xsd
@@ -14,90 +11,37 @@
            				   http://www.springframework.org/schema/aop/spring-aop.xsd
                            http://www.springframework.org/schema/tx
                            http://www.springframework.org/schema/tx/spring-tx.xsd"
-  default-autowire="byName">
-  <context:annotation-config />
-  <aop:aspectj-autoproxy />
-  <context:component-scan
-    base-package="py.edu.ucsa.voto.dao" />
-  <tx:annotation-driven
-    proxy-target-class="true" />
-  <bean
-    id="transactionManager"
-    class="org.springframework.orm.jpa.JpaTransactionManager"
-    p:entityManagerFactory-ref="entityManagerFactory" />
-  <bean
-    id="dataSource"
-    class="com.mchange.v2.c3p0.ComboPooledDataSource"
-    destroy-method="close">
-    <property
-      name="driverClass"
-      value="org.postgresql.Driver" />
-     <!-- <property
-      name="jdbcUrl"
-      value="jdbc:postgresql://192.168.56.101:5432/gfvws" />
-      -->
-      <!-- maquina virtual INICIO -->
-<!--     <property
-      name="jdbcUrl"
-      value="jdbc:postgresql://192.168.1.2:5432/VOTOPY" /> -->
-     <!-- maquina virtual FIN -->
-      <property
-      name="jdbcUrl"
-      value="jdbc:postgresql://voto.db:5432/VOTOPY" />
-      
-    <property
-      name="user"
-      value="ucsa2014" />
-    <property
-      name="password"
-      value="ucsa2014" />
-    <!-- <property
-      name="initialPoolSize"
-      value="3" />
-    <property
-      name="maxIdleTime"
-      value="5" />
-    <property
-      name="minPoolSize"
-      value="2" />
-    <property
-      name="maxPoolSize"
-      value="4" />
-    <property
-      name="acquireIncrement"
-      value="1" />
-    <property
-      name="maxStatements"
-      value="50" />
-    <property
-      name="checkoutTimeout"
-      value="3000" />
-    <property
-      name="preferredTestQuery"
-      value="SELECT 1" />
-    <property
-      name="idleConnectionTestPeriod"
-      value="60" />
-      -->
-  </bean>
-  <bean
-    id="entityManagerFactory"
-    class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-    p:dataSource-ref="dataSource">
-    <property
-      name="jpaVendorAdapter">
-      <bean
-        class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-        <property
-          name="generateDdl"
-          value="true" />
-        <property
-          name="showSql"
-          value="true"></property>
-      </bean>
-    </property>
-    <property
-      name="persistenceUnitName"
-      value="simple-jpa" />
-  </bean>
+	default-autowire="byName">
+	<context:annotation-config />
+	<aop:aspectj-autoproxy />
+	<context:component-scan base-package="py.edu.ucsa.voto.dao" />
+	<tx:annotation-driven proxy-target-class="true" />
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory" />
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="org.postgresql.Driver" />
+		<!-- <property name="jdbcUrl" value="jdbc:postgresql://192.168.56.101:5432/gfvws" 
+			/> -->
+		<!-- maquina virtual INICIO -->
+		<!-- <property name="jdbcUrl" value="jdbc:postgresql://192.168.1.2:5432/VOTOPY" 
+			/> -->
+		<!-- maquina virtual FIN -->
+		<property name="jdbcUrl" value="jdbc:postgresql://voto.db:5432/VOTOPY" />
+
+		<property name="user" value="ucsa2014" />
+		<property name="password" value="ucsa2014" />
+
+	</bean>
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		p:dataSource-ref="dataSource">
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="true" />
+				<property name="showSql" value="true"></property>
+			</bean>
+		</property>
+		<property name="persistenceUnitName" value="simple-jpa" />
+	</bean>
 </beans>
