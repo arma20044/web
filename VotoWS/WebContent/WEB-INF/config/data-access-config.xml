@@ -27,7 +27,7 @@
 		<!-- <property name="jdbcUrl" value="jdbc:postgresql://192.168.1.2:5432/VOTOPY" 
 			/> -->
 		<!-- maquina virtual FIN -->
-		<property name="jdbcUrl" value="jdbc:postgresql://voto.db:5432/VOTOPY" />
+		<property name="jdbcUrl" value="jdbc:postgresql://192.168.0.14:5432/VOTOPY" />
 
 		<property name="user" value="ucsa2014" />
 		<property name="password" value="ucsa2014" />
