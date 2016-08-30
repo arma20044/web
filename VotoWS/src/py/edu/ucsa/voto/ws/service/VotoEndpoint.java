@@ -238,7 +238,7 @@ public class VotoEndpoint implements MarshallingVotoService {
 			 
 			 if (!autenticado.isEmpty())
 			 {
-				 if(autenticado.get(0).getEs_admin()!=null){
+				 if(autenticado.get(0).getEs_admin()==true){
 					 response.setCodigo(new BigDecimal(_CODIGO_OK_AUTENTICADO_ADMIN));
 						response.setDescripcion(_DESCRIPCION_OK_AUTENTICADO_ADMIN);
 						response.setAutenticarRequest(request);
