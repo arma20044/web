@@ -18,27 +18,36 @@ package py.edu.ucsa.voto.ws.service;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateQueryException;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 
+import com.google.gson.Gson;
+
+import py.edu.ucsa.voto.dao.AbstractSpringDAO;
 import py.edu.ucsa.voto.dao.AutenticarRequestDAOInterface;
 import py.edu.ucsa.voto.dao.AutenticarResponseDAOInterface;
+import py.edu.ucsa.voto.dao.CanalizadorDAO;
 import py.edu.ucsa.voto.dao.ConsultarRequestDAOInterface;
 import py.edu.ucsa.voto.dao.ConsultarResponseDAOInterface;
 import py.edu.ucsa.voto.dao.GeneroDAOInterface;
 import py.edu.ucsa.voto.dao.QueryGenericoRequestDAOInterface;
 import py.edu.ucsa.voto.dao.QueryGenericoResponseDAOInterface;
+import py.edu.ucsa.voto.dao.RolesDAO;
+import py.edu.ucsa.voto.dao.RolesDAOInterface;
 import py.edu.ucsa.voto.dao.VotarRequestDAOInterface;
 import py.edu.ucsa.voto.dao.VotarResponseDAOInterface;
 import py.edu.ucsa.voto.entity.Genero;
+import py.edu.ucsa.voto.entity.UcsawsRoles;
 import py.edu.ucsa.voto.entity.Users;
 import py.edu.ucsa.voto.ws.schema.beans.AutenticarRequest;
 import py.edu.ucsa.voto.ws.schema.beans.AutenticarResponse;
@@ -120,7 +129,12 @@ public class VotoEndpoint implements MarshallingVotoService {
 	private QueryGenericoRequestDAOInterface queryGenericoRequestDAO;
 	@Autowired
 	private QueryGenericoResponseDAOInterface queryGenericoResponseDAO;
+	
+	@Autowired
+	private RolesDAOInterface rolesDAO;
 
+	@Autowired 
+	private CanalizadorDAO canalizador;
 	
 //	@Autowired
 //	private RealizarTransaccionRequestDAOInterface realizarTransaccionRequestDAO;
@@ -290,9 +304,34 @@ public class VotoEndpoint implements MarshallingVotoService {
 			// recibir response
 			queryGenericoRequestDAO.saveOrUpdate(request);
 			
+			//json string to java object;
+			//ObjectMapper mapper = new ObjectMapper();
+			//String jsonInString  =request.getQuery_generico();
+			//UcsawsRoles user = mapper.readValue(jsonInString, UcsawsRoles.class);
+			
+			//Date a = new Date();
+			//user.setFchIns(a);
+			//user.setUsuarioIns("test hacer dinamico");
+			//Gson gson  = new Gson();
+			//UcsawsRoles albums = gson.fromJson(jsonInString, UcsawsRoles.class);
+			//String json = jsonInString;
+		    //ObjectMapper mapper1 = new ObjectMapper();
+		 
+		    //mapper1.reader().forType(UcsawsRoles.class).readValue(json);
+			
+			Integer codigo = canalizador.parearClase (request).getCodigo();
+			response.setCodigo(codigo);
+			
+			String respon = canalizador.parearClase (request).getQuery_generico_response();
+			response.setQuery_generico_response(respon);
+			
+			response.setQueryGenericoRequest(request);
 			//PARA INSERTAR
-			if (request.getTipo_query_generico()==1){
-				generoDAO.saveNativo(request.getQuery_generico());
+		/*	if (request.getTipo_query_generico()==1){
+				
+				rolesDAO.save(user);
+				
+				//generoDAO.saveNativo(request.getQuery_generico());
 				
 				response.setCodigo(_CODIGO_OK_INSERT);
 				response.setQuery_generico_response("INSERT OK");
@@ -363,7 +402,7 @@ public class VotoEndpoint implements MarshallingVotoService {
 							response.setQueryGenericoRequest(request);
 				
 				
-						}
+						}*/
 			
 
 		} catch (Exception e) {

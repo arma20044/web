@@ -32,10 +32,7 @@
     name="tipo_query_generico">
     <restriction
       base="nonNegativeInteger">
-      <minInclusive
-        value="1"></minInclusive>
-      <maxInclusive
-        value="4"></maxInclusive>
+      
     </restriction>
   </simpleType>
    <simpleType

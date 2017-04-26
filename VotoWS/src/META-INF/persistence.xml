@@ -18,6 +18,15 @@
    <class>py.edu.ucsa.voto.entity.Users</class>
    <class>py.edu.ucsa.voto.ws.schema.beans.QueryGenericoRequest</class>
    <class>py.edu.ucsa.voto.ws.schema.beans.QueryGenericoResponse</class>
+   <class>py.edu.ucsa.voto.entity.UcsawsEvento</class>
+   <class>py.edu.ucsa.voto.entity.UcsawsRoles</class>
+   <class>py.edu.ucsa.voto.entity.UcsawsTipoEvento</class>
+   
+    <class>py.edu.ucsa.voto.entity.UcsawsUsers</class>
+     <class>py.edu.ucsa.voto.entity.UcsawsPersona</class>
+      <class>py.edu.ucsa.voto.entity.UcsawsNacionalidad</class>
+       <class>py.edu.ucsa.voto.entity.UcsawsPais</class>
+        <class>py.edu.ucsa.voto.entity.UcsawsGenero</class>
     <exclude-unlisted-classes />
     <properties>
       <property
