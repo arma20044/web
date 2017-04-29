@@ -67,6 +67,7 @@ public abstract class AbstractSpringDAO implements DAOInterface {
 			 */
 			AbstractFechaUsuario afc = (AbstractFechaUsuario) obj;
 			afc.setFchins(getDataBaseTime());
+			afc.setUsuarioins("sistema");
 			/*
 			 * Funcionario funcionario = ((AndeInetOrgPerson)
 			 * SecurityContextHolder

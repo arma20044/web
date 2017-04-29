@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
 import py.edu.ucsa.voto.entity.UcsawsUsers;
 
 
@@ -55,6 +56,29 @@ public class UsersDAO extends AbstractSpringDAO implements UsersDAOInterface {
 		query.setParameter("user", user);
 		query.setParameter("pass", pass);
 		
+		resultado = query.getResultList();
+		if (resultado.size()==0){
+			return e;
+		}
+		else
+			if(resultado.size()==1){
+				return (UcsawsUsers) resultado.get(0);
+			}
+		return (UcsawsUsers) resultado.get(0);
+		
+		//return null;
+		
+	}
+	
+	public UcsawsUsers consultarUsuario( String id){
+		List<UcsawsUsers> resultado;
+		UcsawsUsers e = new UcsawsUsers();
+		String hql;
+		hql = "select obj from " + claseEntidad + " obj where  obj. = :user and pass = :pass and ucsawsPersona.id =:personaid ";
+		Query query = em.createQuery(hql);
+		query.setParameter("habilitado", Integer.parseInt("1"));
+		query.setParameter("sufrago", Integer.parseInt("0"));
+		query.setParameter("personaid", id);
 		resultado = query.getResultList();
 		if (resultado.size()==0){
 			return e;

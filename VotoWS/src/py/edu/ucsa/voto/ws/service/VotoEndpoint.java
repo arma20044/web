@@ -319,11 +319,16 @@ public class VotoEndpoint implements MarshallingVotoService {
 		 
 		    //mapper1.reader().forType(UcsawsRoles.class).readValue(json);
 			
-			Integer codigo = canalizador.parearClase (request).getCodigo();
+			/*Integer codigo = canalizador.parearClase (request).getCodigo();
 			response.setCodigo(codigo);
 			
 			String respon = canalizador.parearClase (request).getQuery_generico_response();
-			response.setQuery_generico_response(respon);
+			response.setQuery_generico_response(respon);*/
+			
+			QueryGenericoResponse aux = canalizador.parearClase (request);
+			
+			response.setCodigo(aux.getCodigo());
+			response.setQuery_generico_response(aux.getQuery_generico_response());
 			
 			response.setQueryGenericoRequest(request);
 			//PARA INSERTAR

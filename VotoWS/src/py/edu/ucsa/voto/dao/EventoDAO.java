@@ -65,5 +65,23 @@ public class EventoDAO extends AbstractSpringDAO implements EventoDAOInterface {
 		//return null;
 		
 	}
+	
+	public UcsawsEvento obtenerEventoById(Integer idEvento){
+		List<UcsawsEvento> resultado;
+		UcsawsEvento e = new UcsawsEvento();
+		String hql;
+		hql = "select obj from " + claseEntidad + " obj where  id =: idEvento";
+		Query query = em.createQuery(hql);
+		query.setParameter("idEvento", idEvento);
+		resultado = query.getResultList();
+		if (resultado.size()==0){
+			return e;
+		}
+		else
+			if(resultado.size()==1){
+				return (UcsawsEvento) resultado.get(0);
+			}
+		return (UcsawsEvento) resultado.get(0);
+	}
 
 }

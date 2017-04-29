@@ -14,5 +14,6 @@ public interface UsersDAOInterface extends DAOInterface{
 	public void delete(UcsawsUsers o);
 	public List<UcsawsUsers> getList();
 	public UcsawsUsers consultarUsuario(String user, String pass);
+	public UcsawsUsers consultarUsuario(String idPersona);
 
 }

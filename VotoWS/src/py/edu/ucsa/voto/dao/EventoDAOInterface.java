@@ -13,5 +13,6 @@ public interface EventoDAOInterface extends DAOInterface{
 	public void delete(UcsawsEvento o);
 	public List<UcsawsEvento> getList();
 	public UcsawsEvento obtenerEventoByFecha(Date fecha);
+	public UcsawsEvento obtenerEventoById(Integer idEvento);
 
 }
