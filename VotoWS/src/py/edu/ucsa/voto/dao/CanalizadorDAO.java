@@ -221,12 +221,58 @@ public class CanalizadorDAO {
 			}
 		}
 
-		if (request.getTipo_query_generico() == 6) {// insertar UCSAWS_USERS
+	
+		//consultar usuario + contraseña UCSAWS_USERS
+		else if (request.getTipo_query_generico() == 7) {
+			
+			// json string to List<String>;
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonInString = request.getQuery_generico();
+			List<String> lista = mapper.readValue(jsonInString, List.class);
 
-		}
+			UcsawsUsers users = new UcsawsUsers();
+			
+			users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+			
+			if(users.getIdUser()!= null){
+				
+				
+				//parseo json
+				ObjectMapper mapperObj = new ObjectMapper();
+				String jsonStr = "";
+				try {
+					// get Employee object as a json string
+					jsonStr = mapperObj.writeValueAsString(users);
+					System.out.println(jsonStr);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			}
+				
+				
+				response.setCodigo(2244);
+				response.setQuery_generico_response(jsonStr);
+			}
+			else{
+				ObjectMapper mapperObj = new ObjectMapper();
+				String jsonStr = "";
+				try {
+					// get Employee object as a json string
+					jsonStr = mapperObj.writeValueAsString(users);
+					System.out.println(jsonStr);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			}
+				
+				
+				response.setCodigo(2244);
+				response.setQuery_generico_response(jsonStr);
+			}
 
-		else if (request.getTipo_query_generico() == 7) {// eliminar clase
-															// UCSAWS_USERS
+			
+
+			
 		}
 
 		else if (request.getTipo_query_generico() == 8) {// modificar clase
