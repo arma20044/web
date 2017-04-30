@@ -1,9 +1,13 @@
 package py.edu.ucsa.voto.dao;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import oracle.jdbc.driver.DatabaseError;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -15,9 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import py.edu.ucsa.voto.entity.Generic;
 import py.edu.ucsa.voto.entity.UcsawsEvento;
 import py.edu.ucsa.voto.entity.UcsawsListas;
 import py.edu.ucsa.voto.entity.UcsawsMesa;
+import py.edu.ucsa.voto.entity.UcsawsTipoEvento;
 import py.edu.ucsa.voto.entity.UcsawsTipoLista;
 import py.edu.ucsa.voto.entity.UcsawsUsers;
 import py.edu.ucsa.voto.entity.UcsawsVotante;
@@ -50,6 +56,9 @@ public class CanalizadorDAO {
 
 	@Autowired
 	TipoListasDAOInterface tipoListasDAO;
+	
+	@Autowired
+	TipoEventoDAOInterface tipoEventoDAO;
 
 	@Transactional
 	public QueryGenericoResponse parearClase(QueryGenericoRequest request)
@@ -105,11 +114,50 @@ public class CanalizadorDAO {
 				response.setQuery_generico_response(jsonStr);
 			}
 
-		} else if (request.getTipo_query_generico() == 2) {// insertar clase
-															// UCSAWS_EVENTO
+		//guardar EVENTO
+		} else if (request.getTipo_query_generico() == 2) {// insertar clase // UCSAWS_EVENTO
+			
+			// json string to java object;
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonInString = request.getQuery_generico();
+			UcsawsEvento evento = mapper.readValue(jsonInString, UcsawsEvento.class);
 
-		} else if (request.getTipo_query_generico() == 3) {// eliminar clase
-															// UCSAWS_EVENTO
+			evento.setUsuarioIns("sistema");
+			evento.setFchIns(new Date());
+			
+
+			
+
+			UcsawsEvento comprobar = (UcsawsEvento) eventoDAO.save(evento);
+			if (comprobar.getIdEvento()==null) {
+				response.setCodigo(2244);
+				response.setQuery_generico_response("NO");
+			} else {
+				response.setCodigo(2244);
+				response.setQuery_generico_response("SI");
+			}
+
+		} else if (request.getTipo_query_generico() == 3) {// eliminar clase // UCSAWS_EVENTO
+										
+			// json string to java object;
+			
+			
+			UcsawsEvento evento = eventoDAO.obtenerEventoById(Integer.parseInt(request.getQuery_generico()));
+
+			
+			try{
+			eventoDAO.delete(evento);
+			}
+			catch (Exception e){
+				System.out.println(e);
+				response.setCodigo(2244);
+				response.setQuery_generico_response("NO");
+			}
+			 finally {
+				response.setCodigo(2244);
+				response.setQuery_generico_response("SI");
+			}
+			
 
 		} else if (request.getTipo_query_generico() == 4) {// modificar clase
 															// UCSAWS_EVENTO
@@ -487,6 +535,346 @@ public class CanalizadorDAO {
 				response.setQuery_generico_response("SI");
 			}
 		}
+		
+		//consultar todos los eventos
+				else if (request.getTipo_query_generico() == 30) {
+					
+					// json string to List<String>;
+					/*ObjectMapper mapper = new ObjectMapper();
+					String jsonInString = request.getQuery_generico();
+					List<String> lista = mapper.readValue(jsonInString, List.class);*/
+
+					List<UcsawsEvento> evento = new ArrayList<UcsawsEvento>();
+					evento = eventoDAO.getList();
+					
+					
+					//users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+					
+					if(!(evento.isEmpty())){
+						
+						
+						//parseo json
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+					else{
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+
+					
+
+					
+				}
+		
+		//consultar todos los tipos de eventos
+				else if (request.getTipo_query_generico() == 31) {
+					
+					// json string to List<String>;
+					/*ObjectMapper mapper = new ObjectMapper();
+					String jsonInString = request.getQuery_generico();
+					List<String> lista = mapper.readValue(jsonInString, List.class);*/
+
+					List<UcsawsTipoEvento> evento = new ArrayList<UcsawsTipoEvento>();
+					evento = tipoEventoDAO.getList();
+					
+					
+					//users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+					
+					if(!(evento.isEmpty())){
+						
+						
+						//parseo json
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+					else{
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+
+					
+
+					
+				}
+		
+		//consultar tipo evento by ID
+				else if (request.getTipo_query_generico() == 32) {
+					
+					// json string to List<String>;
+					/*ObjectMapper mapper = new ObjectMapper();
+					String jsonInString = request.getQuery_generico();
+					List<String> lista = mapper.readValue(jsonInString, List.class);*/
+
+					UcsawsTipoEvento evento = new UcsawsTipoEvento();
+					evento = tipoEventoDAO.obtenerTipoEventoById(Integer.parseInt(request.getQuery_generico()));
+					
+					
+					//users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+					
+					if(evento.getIdTipoEvento()!= null){
+						
+						
+						//parseo json
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+					else{
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+
+					
+
+					
+				}
+		
+				else if (request.getTipo_query_generico() == 33) {
+					
+					// json string to List<String>;
+					/*ObjectMapper mapper = new ObjectMapper();
+					String jsonInString = request.getQuery_generico();
+					List<String> lista = mapper.readValue(jsonInString, List.class);*/
+
+					UcsawsEvento evento = new UcsawsEvento();
+					evento = eventoDAO.obtenerEventoByCodigo(request.getQuery_generico());
+					
+					
+					//users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+					
+					if(!(evento.getIdEvento()==null)){
+						
+						
+						//parseo json
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+					else{
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+
+					
+
+					
+				}
+		
+				else if (request.getTipo_query_generico() == 34) {
+					
+					// json string to List<String>;
+					ObjectMapper mapper = new ObjectMapper();
+					DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+					mapper.setDateFormat(df);
+					String jsonInString = request.getQuery_generico();
+					Generic g = mapper.readValue(jsonInString, Generic.class);
+					
+					
+					
+
+					UcsawsEvento evento = new UcsawsEvento();
+					evento = eventoDAO.obtenerEventoByRangoFechaTipoEvento(g);
+					
+					
+					//users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+					
+					if(!(evento.getIdEvento()==null)){
+						
+						
+						//parseo json
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+					else{
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+
+					
+
+					
+				}
+		
+					else if (request.getTipo_query_generico() == 35) {
+					
+					// json string to List<String>;
+					ObjectMapper mapper = new ObjectMapper();
+					DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+					mapper.setDateFormat(df);
+					String jsonInString = request.getQuery_generico();
+					Generic g = mapper.readValue(jsonInString, Generic.class);
+					
+					
+					
+
+					UcsawsEvento evento = new UcsawsEvento();
+					evento = eventoDAO.obtenerEventoByRangoFechaEvento(g);
+					
+					
+					//users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+					
+					if(!(evento.getIdEvento()==null)){
+						
+						
+						//parseo json
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+					else{
+						ObjectMapper mapperObj = new ObjectMapper();
+						String jsonStr = "";
+						try {
+							// get Employee object as a json string
+							jsonStr = mapperObj.writeValueAsString(evento);
+							System.out.println(jsonStr);
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+					}
+						
+						
+						response.setCodigo(2244);
+						response.setQuery_generico_response(jsonStr);
+					}
+
+					
+
+					
+				}
+		
+		
+		
 		return response;
 
 	}
