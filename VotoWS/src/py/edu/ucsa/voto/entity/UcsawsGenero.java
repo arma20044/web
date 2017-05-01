@@ -58,8 +58,7 @@ public class UcsawsGenero implements java.io.Serializable {
 	@Column(name = "id_evento", nullable = false)
 	private Integer idEvento;
 	
-	@Column(name = "id_persona", nullable = true)
-	private Integer ucsawsPersonas;
+	 
 	
 
 	public UcsawsGenero() {
@@ -76,7 +75,7 @@ public class UcsawsGenero implements java.io.Serializable {
 
 	public UcsawsGenero(Integer idGenero, String descripcion, Date fchIns,
 			Date fchUpd, String usuarioIns, String usuarioUpd, String codigo,
-			Integer idEvento, Integer ucsawsPersonas) {
+			Integer idEvento ) {
 		this.idGenero = idGenero;
 		this.descripcion = descripcion;
 		this.fchIns = fchIns;
@@ -85,7 +84,7 @@ public class UcsawsGenero implements java.io.Serializable {
 		this.usuarioUpd = usuarioUpd;
 		this.codigo = codigo;
 		this.idEvento = idEvento;
-		this.ucsawsPersonas = ucsawsPersonas;
+		 
 	}
 
 	public Integer getIdGenero() {

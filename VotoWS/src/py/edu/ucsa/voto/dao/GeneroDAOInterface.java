@@ -1,16 +1,25 @@
 package py.edu.ucsa.voto.dao;
 
+import java.util.Date;
 import java.util.List;
 
-import py.edu.ucsa.voto.entity.Genero;
+import py.edu.ucsa.voto.entity.Generic;
+import py.edu.ucsa.voto.entity.UcsawsGenero;
+
+
 
 public interface GeneroDAOInterface extends DAOInterface{
 
-	public void saveOrUpdate(Genero o);
-	public void delete(Genero o);
-	public List<Genero> getList();
-	public void saveNativo(String query);
-	public String SelectNativo(String query);
-	public void updateNativo(String query);
+	public void saveOrUpdate(UcsawsGenero o);
+	public void delete(UcsawsGenero o);
+	public List<UcsawsGenero> getList();
+	/*public UcsawsGenero obtenerEventoByFecha(Date fecha);
+	public UcsawsGenero obtenerEventoById(Integer idEvento);
+	public UcsawsGenero obtenerEventoByCodigo(String codigoEvento);
+	public UcsawsGenero obtenerEventoByRangoFechaTipoEvento(Generic g);
+	public UcsawsGenero obtenerEventoByRangoFechaEvento(Generic g);*/
+	public List<UcsawsGenero> obtenerGeneroByIdEvento(Integer idEvento);
+	public List<UcsawsGenero> obtenerGeneroByCodigoGEneroIdEvento(String codGenero,Integer idEvento);
+	public List<UcsawsGenero> obtenerGeneroById (Integer idGenero);
 
 }
