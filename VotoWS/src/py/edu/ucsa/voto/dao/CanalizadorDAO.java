@@ -24,6 +24,9 @@ import py.edu.ucsa.voto.entity.UcsawsEvento;
 import py.edu.ucsa.voto.entity.UcsawsGenero;
 import py.edu.ucsa.voto.entity.UcsawsListas;
 import py.edu.ucsa.voto.entity.UcsawsMesa;
+import py.edu.ucsa.voto.entity.UcsawsNacionalidad;
+import py.edu.ucsa.voto.entity.UcsawsPais;
+import py.edu.ucsa.voto.entity.UcsawsPersona;
 import py.edu.ucsa.voto.entity.UcsawsTipoEvento;
 import py.edu.ucsa.voto.entity.UcsawsTipoLista;
 import py.edu.ucsa.voto.entity.UcsawsUsers;
@@ -63,6 +66,15 @@ public class CanalizadorDAO {
 
     @Autowired
     GeneroDAOInterface generoDAO;
+
+    @Autowired
+    PersonaDAOInterface personaDAO;
+
+    @Autowired
+    PaisDAOInterface paisDAO;
+
+    @Autowired
+    NacionalidadDAOInterface nacionalidadDAO;
 
     @Transactional
     public QueryGenericoResponse parearClase(QueryGenericoRequest request)
@@ -1077,9 +1089,8 @@ public class CanalizadorDAO {
 	    // json string to java object;
 	    ObjectMapper mapper = new ObjectMapper();
 	    String jsonInString = request.getQuery_generico();
-	    UcsawsGenero genero = mapper.readValue(jsonInString,UcsawsGenero.class);
-
-	     
+	    UcsawsGenero genero = mapper.readValue(jsonInString,
+		    UcsawsGenero.class);
 
 	    try {
 		generoDAO.delete(genero);
@@ -1093,14 +1104,14 @@ public class CanalizadorDAO {
 	    }
 
 	}
-	//CONSULTAR GENERO BY ID
+	// CONSULTAR GENERO BY ID
 	else if (request.getTipo_query_generico() == 43) {
 
 	    // json string to List<String>;
 
 	    ObjectMapper mapper = new ObjectMapper();
 	    String jsonInString = request.getQuery_generico();
-	    String idGenero = mapper.readValue(jsonInString,String.class);
+	    String idGenero = mapper.readValue(jsonInString, String.class);
 
 	    List<UcsawsGenero> genero = new ArrayList<UcsawsGenero>();
 	    genero = generoDAO.obtenerGeneroById(Integer.parseInt(idGenero));
@@ -1139,8 +1150,537 @@ public class CanalizadorDAO {
 		response.setQuery_generico_response(jsonStr);
 	    }
 
+	}
+
+	// consultar PERSONAS by evento
+	else if (request.getTipo_query_generico() == 44) {
+
+	    // json string to List<String>;
+	    /*
+	     * ObjectMapper mapper = new ObjectMapper(); String jsonInString =
+	     * request.getQuery_generico(); List<String> lista =
+	     * mapper.readValue(jsonInString, List.class);
+	     */
+
+	    List<UcsawsPersona> persona = new ArrayList<UcsawsPersona>();
+	    persona = personaDAO.obtenerPersonaByEvento(Integer
+		    .parseInt(request.getQuery_generico()));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(persona.isEmpty())) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(persona);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(persona);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
+	// consultar PAISES by evento
+	else if (request.getTipo_query_generico() == 45) {
+
+	    // json string to List<String>;
+	    /*
+	     * ObjectMapper mapper = new ObjectMapper(); String jsonInString =
+	     * request.getQuery_generico(); List<String> lista =
+	     * mapper.readValue(jsonInString, List.class);
+	     */
+
+	    List<UcsawsPais> pais = new ArrayList<UcsawsPais>();
+	    pais = paisDAO.obtenerPaisByEvento(Integer.parseInt(request
+		    .getQuery_generico()));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(pais.isEmpty())) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(pais);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(pais);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
+	// consultar NACIONALIDAD by evento
+	else if (request.getTipo_query_generico() == 46) {
+
+	    // json string to List<String>;
+	     
+	       ObjectMapper mapper = new ObjectMapper(); 
+	       String jsonInString = request.getQuery_generico(); 
+	        String  id =mapper.readValue(jsonInString, String.class);
+	      
+
+	    List<UcsawsNacionalidad> nacionalidad = new ArrayList<UcsawsNacionalidad>();
+	    nacionalidad = nacionalidadDAO.obtenerNacionalidadByEvento(Integer
+		    .parseInt(id));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(nacionalidad.isEmpty())) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(nacionalidad);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(nacionalidad);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
+	// consultar por nombre pais y por ID evento
+	else if (request.getTipo_query_generico() == 47) {
+
+	    // json string to List<String>;
+
+	    ObjectMapper mapper = new ObjectMapper();
+	    String jsonInString = request.getQuery_generico();
+	    List<String> codigoGeneroidEvento = mapper.readValue(jsonInString,
+		    List.class);
+
+	    UcsawsPais pais = new UcsawsPais();
+	    pais = paisDAO.obtenerPaisByNombreYEvento(
+		    codigoGeneroidEvento.get(0),
+		    Integer.parseInt(codigoGeneroidEvento.get(1)),
+		    codigoGeneroidEvento.get(2));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (pais.getIdPais() != null) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(pais);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(pais);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
 	    // guardar GENERO
 	}
+
+	//guardar pais
+	else if (request.getTipo_query_generico() == 48) { 
+
+	    // json string to java object;
+	    ObjectMapper mapper = new ObjectMapper();
+	    String jsonInString = request.getQuery_generico();
+	    UcsawsPais pais = mapper.readValue(jsonInString,UcsawsPais.class);
+
+	   // pais.setUsuarioIns("sistema");
+	    pais.setFchIns(new Date());
+
+	    UcsawsPais comprobar = (UcsawsPais) paisDAO.save(pais);
+	    if (comprobar.getIdPais() == null) {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("NO");
+	    } else {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("SI");
+	    }
+
+	}
+	
+	// OBTENER NACIONALIDAD BY CODIGO Y NOMBRE (VALIDACION)
+		else if (request.getTipo_query_generico() == 49) {
+
+		    // json string to List<String>;
+		     
+		       ObjectMapper mapper = new ObjectMapper(); String jsonInString =
+		      request.getQuery_generico(); 
+		       List<String> lista = mapper.readValue(jsonInString, List.class);
+		      
+
+		    UcsawsNacionalidad nacionalidad = new UcsawsNacionalidad();
+		    nacionalidad = nacionalidadDAO.obtenerNacionalidadByCodigoYNombre(lista.get(0), lista.get(1), Integer.parseInt(lista.get(2)));
+			    
+			     
+		    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+		   
+			// parseo json
+			ObjectMapper mapperObj = new ObjectMapper();
+			String jsonStr = "";
+			try {
+			    // get Employee object as a json string
+			    jsonStr = mapperObj.writeValueAsString(nacionalidad);
+			    System.out.println(jsonStr);
+			} catch (IOException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			}
+
+			response.setCodigo(2244);
+			response.setQuery_generico_response(jsonStr);
+		    
+
+		}
+	
+	// consultar pais por id
+		else if (request.getTipo_query_generico() == 50) {
+
+		    // json string to List<String>;
+
+		    ObjectMapper mapper = new ObjectMapper();
+		    String jsonInString = request.getQuery_generico();
+		    String idPais = mapper.readValue(jsonInString,String.class);
+
+		    UcsawsPais pais = new UcsawsPais();
+		    pais = paisDAO.obtenerPaisById(Integer.parseInt(idPais));
+
+		    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+		     
+
+			// parseo json
+			ObjectMapper mapperObj = new ObjectMapper();
+			String jsonStr = "";
+			try {
+			    // get Employee object as a json string
+			    jsonStr = mapperObj.writeValueAsString(pais);
+			    System.out.println(jsonStr);
+			} catch (IOException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			}
+
+			response.setCodigo(2244);
+			response.setQuery_generico_response(jsonStr);
+		    
+		}
+		
+		//guardar NACIONALIDAD
+		 else if (request.getTipo_query_generico() == 51) {
+
+			    // json string to java object;
+			    ObjectMapper mapper = new ObjectMapper();
+			    String jsonInString = request.getQuery_generico();
+			    UcsawsNacionalidad nacionalidad = mapper.readValue(jsonInString,UcsawsNacionalidad.class);
+
+			    // genero.setUsuarioIns("sistema");
+			    nacionalidad.setFchIns(new Date());
+
+			    UcsawsNacionalidad comprobar = (UcsawsNacionalidad) nacionalidadDAO.save(nacionalidad);
+			    if (comprobar.getIdNacionalidad() == null) {
+				response.setCodigo(2244);
+				response.setQuery_generico_response("NO");
+			    } else {
+				response.setCodigo(2244);
+				response.setQuery_generico_response("SI");
+			    }
+
+			}
+	
+	
+	
+	// consultar nacionalidades con este pais y evento
+		else if (request.getTipo_query_generico() == 52) {
+
+		    // json string to List<String>;
+
+		    ObjectMapper mapper = new ObjectMapper();
+		    String jsonInString = request.getQuery_generico();
+		    List<String> lista = mapper.readValue(jsonInString,List.class);
+
+		  //  UcsawsPais pais = new UcsawsPais();
+		   // pais = paisDAO.obtenerPaisByIdYEvento(Integer.parseInt(lista.get(0)), Integer.parseInt(lista.get(1)));
+		    
+		    UcsawsNacionalidad n = new UcsawsNacionalidad();
+		    n = nacionalidadDAO.obtenerNacionalidadByPaisyEvento(Integer.parseInt(lista.get(0)), Integer.parseInt(lista.get(1)));
+
+		    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+		     
+
+			// parseo json
+			ObjectMapper mapperObj = new ObjectMapper();
+			String jsonStr = "";
+			try {
+			    // get Employee object as a json string
+			    jsonStr = mapperObj.writeValueAsString(n);
+			    System.out.println(jsonStr);
+			} catch (IOException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			}
+
+			response.setCodigo(2244);
+			response.setQuery_generico_response(jsonStr);
+		    
+		}
+		
+	// ELIMINAR NACIONALIDAD
+	else if (request.getTipo_query_generico() == 53) {
+
+	    // json string to java object;
+	    ObjectMapper mapper = new ObjectMapper();
+	    String jsonInString = request.getQuery_generico();
+	    UcsawsNacionalidad nacionalidad = mapper.readValue(jsonInString,UcsawsNacionalidad.class);
+
+	    try {
+		nacionalidadDAO.delete(nacionalidad);
+	    } catch (Exception e) {
+		System.out.println(e);
+		response.setCodigo(2244);
+		response.setQuery_generico_response("NO");
+	    } finally {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("SI");
+	    }
+
+	}
+	
+	// consultar NACIONALIDAD by id
+	else if (request.getTipo_query_generico() == 54) {
+
+	    // json string to List<String>;
+	     
+	       ObjectMapper mapper = new ObjectMapper(); 
+	       String jsonInString = request.getQuery_generico(); 
+	        String  id =mapper.readValue(jsonInString, String.class);
+	      
+
+	     UcsawsNacionalidad  nacionalidad = new  UcsawsNacionalidad();
+	    nacionalidad = nacionalidadDAO.obtenerNacionalidadByID(Integer
+		    .parseInt(id));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(nacionalidad.getIdNacionalidad()== null)) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(nacionalidad);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(nacionalidad);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+	
+	//actualizar update nacionalidad
+	else if (request.getTipo_query_generico() == 55) {
+	    // json string to java object;
+	    ObjectMapper mapper = new ObjectMapper();
+	    String jsonInString = request.getQuery_generico();
+	    UcsawsNacionalidad nacionalidad = mapper.readValue(jsonInString, UcsawsNacionalidad.class);
+	    nacionalidad.setFchUpd(new Date());
+	     
+	     
+	    Object comprobar = nacionalidadDAO.update(nacionalidad);
+	    if (comprobar == null) {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("NO");
+	    } else {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("SI");
+	    }
+	}
+	
+	// consultar nacionalidades by id pais
+			else if (request.getTipo_query_generico() == 56) {
+
+			    // json string to List<String>;
+
+			    ObjectMapper mapper = new ObjectMapper();
+			    String jsonInString = request.getQuery_generico();
+			    String idPais = mapper.readValue(jsonInString,String.class);
+
+			  //  UcsawsPais pais = new UcsawsPais();
+			   // pais = paisDAO.obtenerPaisByIdYEvento(Integer.parseInt(lista.get(0)), Integer.parseInt(lista.get(1)));
+			    
+			    UcsawsNacionalidad n = new UcsawsNacionalidad();
+			    n = nacionalidadDAO.obtenerNacionalidadByPais((Integer.parseInt(idPais)));
+
+			    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+			     
+
+				// parseo json
+				ObjectMapper mapperObj = new ObjectMapper();
+				String jsonStr = "";
+				try {
+				    // get Employee object as a json string
+				    jsonStr = mapperObj.writeValueAsString(n);
+				    System.out.println(jsonStr);
+				} catch (IOException e) {
+				    // TODO Auto-generated catch block
+				    e.printStackTrace();
+				}
+
+				response.setCodigo(2244);
+				response.setQuery_generico_response(jsonStr);
+			    
+			}
+	
+	// consultar PAISES by evento que no esten en la tabla nacionalidades
+	else if (request.getTipo_query_generico() ==  57) {
+
+	    // json string to List<String>;
+	    /*
+	     * ObjectMapper mapper = new ObjectMapper(); String jsonInString =
+	     * request.getQuery_generico(); List<String> lista =
+	     * mapper.readValue(jsonInString, List.class);
+	     */
+
+	    List<UcsawsPais> pais = new ArrayList<UcsawsPais>();
+	    pais = paisDAO.obtenerPaisByEventoFueraNacionalidad(Integer.parseInt(request
+		    .getQuery_generico()));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(pais.isEmpty())) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(pais);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(pais);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
 
 	return response;
 

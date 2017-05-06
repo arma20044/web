@@ -39,16 +39,14 @@
     name="query_generico">
     <restriction
       base="string">
-      <maxLength
-        value="1000"></maxLength>
+       
     </restriction>
   </simpleType>
   <simpleType
     name="query_generico_response">
     <restriction
       base="string">
-      <maxLength
-        value="10000"></maxLength>
+      
     </restriction>
   </simpleType>
   <simpleType

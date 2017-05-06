@@ -32,7 +32,7 @@ public class UcsawsNacionalidad implements java.io.Serializable {
 	@Column(name = "id_nacionalidad", nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
 	@SequenceGenerator(name = "generator", sequenceName = "ucsaws_nacionalidad_seq", allocationSize = 1)
-	private int idNacionalidad;
+	private Integer idNacionalidad;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@Cascade(value = { CascadeType.LOCK })
@@ -70,12 +70,12 @@ public class UcsawsNacionalidad implements java.io.Serializable {
 	public UcsawsNacionalidad() {
 	}
 
-	public UcsawsNacionalidad(int idNacionalidad, UcsawsPais ucsawsPais) {
+	public UcsawsNacionalidad(Integer idNacionalidad, UcsawsPais ucsawsPais) {
 		this.idNacionalidad = idNacionalidad;
 		this.ucsawsPais = ucsawsPais;
 	}
 
-	public UcsawsNacionalidad(int idNacionalidad, UcsawsPais ucsawsPais,
+	public UcsawsNacionalidad(Integer idNacionalidad, UcsawsPais ucsawsPais,
 			String codNacionalidad, String descNacionalidad, String usuarioIns,
 			String usuarioUpd, Date fchIns, Date fchUpd, UcsawsEvento idEvento,
 			Set ucsawsPersonas) {
@@ -91,11 +91,11 @@ public class UcsawsNacionalidad implements java.io.Serializable {
 		
 	}
 
-	public int getIdNacionalidad() {
+	public Integer getIdNacionalidad() {
 		return this.idNacionalidad;
 	}
 
-	public void setIdNacionalidad(int idNacionalidad) {
+	public void setIdNacionalidad(Integer idNacionalidad) {
 		this.idNacionalidad = idNacionalidad;
 	}
 
