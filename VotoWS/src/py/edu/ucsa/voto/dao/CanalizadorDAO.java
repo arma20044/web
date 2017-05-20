@@ -1749,11 +1749,12 @@ public class CanalizadorDAO {
 
 	}
 
-	//eliminar delete persona
-	else if (request.getTipo_query_generico() == 60) { 
+	// eliminar delete persona
+	else if (request.getTipo_query_generico() == 60) {
 
-	    UcsawsPersona persona = personaDAO.obtenerPersonaByIdPersona((Integer
-		    .parseInt(request.getQuery_generico())));
+	    UcsawsPersona persona = personaDAO
+		    .obtenerPersonaByIdPersona((Integer.parseInt(request
+			    .getQuery_generico())));
 
 	    try {
 		personaDAO.delete(persona);
@@ -1767,18 +1768,19 @@ public class CanalizadorDAO {
 	    }
 
 	}
-		
+
 	// consultar PERSONAS by idPersona
 	else if (request.getTipo_query_generico() == 61) {
 
 	    // json string to List<String>;
 
-	    //ObjectMapper mapper = new ObjectMapper();
-	    //String jsonInString = ;
-	    //String cedula = mapper.readValue(jsonInString, String.class);
+	    // ObjectMapper mapper = new ObjectMapper();
+	    // String jsonInString = ;
+	    // String cedula = mapper.readValue(jsonInString, String.class);
 
-	    UcsawsPersona  persona = personaDAO.obtenerPersonaByIdPersona(Integer
-		    .parseInt(request.getQuery_generico()));
+	    UcsawsPersona persona = personaDAO
+		    .obtenerPersonaByIdPersona(Integer.parseInt(request
+			    .getQuery_generico()));
 
 	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
 
@@ -1815,8 +1817,6 @@ public class CanalizadorDAO {
 	    }
 
 	}
-	
-		
 
 	// actualizar persona modificar update
 	else if (request.getTipo_query_generico() == 62) {
@@ -1828,8 +1828,9 @@ public class CanalizadorDAO {
 	    System.out.println(mapper.writerWithDefaultPrettyPrinter()
 		    .writeValueAsString(jsonInString));
 
-	    UcsawsPersona persona = mapper.readValue(jsonInString,UcsawsPersona.class);
- 
+	    UcsawsPersona persona = mapper.readValue(jsonInString,
+		    UcsawsPersona.class);
+
 	    Object comprobar = personaDAO.update(persona);
 	    if (comprobar == null) {
 		response.setCodigo(2244);
@@ -1849,6 +1850,26 @@ public class CanalizadorDAO {
 		response.setCodigo(2244);
 		response.setQuery_generico_response(jsonStr);
 	    }
+	}
+
+	
+	//eliminar PAIS
+	else if (request.getTipo_query_generico() == 63) {
+
+	    UcsawsPais pais = paisDAO.obtenerPaisById((Integer
+		    .parseInt(request.getQuery_generico())));
+
+	    try {
+		paisDAO.delete(pais);
+	    } catch (Exception e) {
+		System.out.println(e);
+		response.setCodigo(2244);
+		response.setQuery_generico_response("NO");
+	    } finally {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("SI");
+	    }
+
 	}
 
 	return response;
