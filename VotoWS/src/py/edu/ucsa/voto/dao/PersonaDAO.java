@@ -1,5 +1,6 @@
 package py.edu.ucsa.voto.dao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -167,6 +168,45 @@ public class PersonaDAO extends AbstractSpringDAO implements PersonaDAOInterface
 	}
 	return resultado ;
 	 
+	
+    }
+    
+    public List<UcsawsPersona> obtenerPersonaByCedula(Integer cedula){
+	
+	List<UcsawsPersona> resultado;
+	UcsawsPersona e = new UcsawsPersona();
+	String hql;
+	hql = "select obj from " + claseEntidad
+		+ " obj where  ci =:ci";
+	Query query = em.createQuery(hql);
+	query.setParameter("ci",new BigDecimal(cedula));
+	resultado = query.getResultList();
+	if (resultado.size() == 0) {
+	    return new ArrayList<UcsawsPersona>();
+	} else if (resultado.size() == 1) {
+	    return  resultado ;
+	}
+	return resultado ;
+	 
+	
+    }
+    
+    public UcsawsPersona obtenerPersonaByIdPersona(Integer idPersona){
+	
+	UcsawsPersona resultado;
+	UcsawsPersona e = new UcsawsPersona();
+	String hql;
+	hql = "select obj from " + claseEntidad
+		+ " obj where  id =:idPersona";
+	Query query = em.createQuery(hql);
+	query.setParameter("idPersona",idPersona);
+	resultado = (UcsawsPersona) query.getSingleResult();
+	if (resultado.getIdPersona() == null) {
+	    return new  UcsawsPersona ();
+	} else   {
+	    return  resultado ;
+	}
+	
 	
     }
 
