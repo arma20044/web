@@ -33,7 +33,7 @@ public class UcsawsZona implements java.io.Serializable {
 	@Column(name = "id_zona", nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
 	@SequenceGenerator(name = "generator", sequenceName = "ucsaws_zona_seq", allocationSize = 1)
-	private int idZona;
+	private Integer idZona;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@Cascade(value = { CascadeType.LOCK })
@@ -69,13 +69,13 @@ public class UcsawsZona implements java.io.Serializable {
 	public UcsawsZona() {
 	}
 
-	public UcsawsZona(int idZona, UcsawsDistrito ucsawsDistrito, UcsawsEvento idEvento) {
+	public UcsawsZona(Integer idZona, UcsawsDistrito ucsawsDistrito, UcsawsEvento idEvento) {
 		this.idZona = idZona;
 		this.ucsawsDistrito = ucsawsDistrito;
 		this.idEvento = idEvento;
 	}
 
-	public UcsawsZona(int idZona, UcsawsDistrito ucsawsDistrito,
+	public UcsawsZona(Integer idZona, UcsawsDistrito ucsawsDistrito,
 			String descZona, String nroZona, String usuarioIns,
 			String usuarioUpd, Date fchIns, Date fchUpd, UcsawsEvento idEvento) {
 		this.idZona = idZona;
@@ -90,11 +90,11 @@ public class UcsawsZona implements java.io.Serializable {
 		
 	}
 
-	public int getIdZona() {
+	public Integer getIdZona() {
 		return this.idZona;
 	}
 
-	public void setIdZona(int idZona) {
+	public void setIdZona(Integer idZona) {
 		this.idZona = idZona;
 	}
 
