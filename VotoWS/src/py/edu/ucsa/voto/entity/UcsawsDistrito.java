@@ -33,7 +33,7 @@ public class UcsawsDistrito implements java.io.Serializable {
 	@Column(name = "id_distrito", nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
 	@SequenceGenerator(name = "generator", sequenceName = "ucsaws_distrito_seq", allocationSize = 1)
-	private int idDistrito;
+	private Integer idDistrito;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@Cascade(value = { CascadeType.LOCK })
@@ -69,14 +69,14 @@ public class UcsawsDistrito implements java.io.Serializable {
 	public UcsawsDistrito() {
 	}
 
-	public UcsawsDistrito(int idDistrito,
+	public UcsawsDistrito(Integer idDistrito,
 			UcsawsDepartamento ucsawsDepartamento, UcsawsEvento idEvento) {
 		this.idDistrito = idDistrito;
 		this.ucsawsDepartamento = ucsawsDepartamento;
 		this.idEvento = idEvento;
 	}
 
-	public UcsawsDistrito(int idDistrito,
+	public UcsawsDistrito(Integer idDistrito,
 			UcsawsDepartamento ucsawsDepartamento, String descDistrito,
 			String nroDistrito, String usuarioIns, String usuarioUpd,
 			Date fchIns, Date fchUpd, UcsawsEvento idEvento) {
@@ -92,11 +92,11 @@ public class UcsawsDistrito implements java.io.Serializable {
 		
 	}
 
-	public int getIdDistrito() {
+	public Integer getIdDistrito() {
 		return this.idDistrito;
 	}
 
-	public void setIdDistrito(int idDistrito) {
+	public void setIdDistrito(Integer idDistrito) {
 		this.idDistrito = idDistrito;
 	}
 

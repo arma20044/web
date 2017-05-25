@@ -9,38 +9,38 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import py.edu.ucsa.voto.entity.UcsawsDepartamento;
 import py.edu.ucsa.voto.entity.UcsawsEvento;
-import py.edu.ucsa.voto.entity.UcsawsTipoEvento;
 
 
 
 
 
-@Repository("tipoEventoDAO")
+@Repository("departamentoDAO")
 @Transactional(readOnly = true)
-public class TipoEventoDAO extends AbstractSpringDAO implements TipoEventoDAOInterface {
+public class DepartamentoDAO extends AbstractSpringDAO implements DepartamentoDAOInterface {
 
-	public TipoEventoDAO() {
-		claseEntidad = "UcsawsTipoEvento";
-		nombreCampoID = "idTipoEvento";
-		campoOrden = "idTipoEvento";
+	public DepartamentoDAO() {
+		claseEntidad = "UcsawsDepartamento";
+		nombreCampoID = "idDepartamento";
+		campoOrden = "idDepartamento";
 	}
 
 	@Transactional
-	public void saveOrUpdate(UcsawsTipoEvento o) {
-		if (o.getIdTipoEvento() == null)
+	public void saveOrUpdate(UcsawsDepartamento o) {
+		if (o.getIdDepartamento() == null)
 			super.save(o);
 		else
 			super.update(o);
 	}
 
 	@Transactional
-	public void delete(UcsawsTipoEvento o) {
+	public void delete(UcsawsDepartamento o) {
 		super.delete(o);
 	}
 
 	@Transactional
-	public List<UcsawsTipoEvento> getList() {
+	public List<UcsawsDepartamento> getList() {
 		return super.getList();
 	}
 	
@@ -67,34 +67,34 @@ public class TipoEventoDAO extends AbstractSpringDAO implements TipoEventoDAOInt
 		
 	}
 	*/
-	public UcsawsTipoEvento obtenerTipoEventoById(Integer idETipovento){
-		List<UcsawsTipoEvento> resultado;
-		UcsawsTipoEvento e = new UcsawsTipoEvento();
+	public UcsawsDepartamento obtenerDepartamentoById(Integer idEDepartamento){
+		List<UcsawsDepartamento> resultado;
+		UcsawsDepartamento e = new UcsawsDepartamento();
 		String hql;
-		hql = "select obj from " + claseEntidad + " obj where  id =:idTipoEvento";
+		hql = "select obj from " + claseEntidad + " obj where  id =:idEDepartamento";
 		Query query = em.createQuery(hql);
-		query.setParameter("idTipoEvento", idETipovento);
+		query.setParameter("idEDepartamento", idEDepartamento);
 		resultado = query.getResultList();
 		if (resultado.size()==0){
 			return e;
 		}
 		else
 			if(resultado.size()==1){
-				return (UcsawsTipoEvento) resultado.get(0);
+				return (UcsawsDepartamento) resultado.get(0);
 			}
-		return (UcsawsTipoEvento) resultado.get(0);
+		return (UcsawsDepartamento) resultado.get(0);
 	}
 	
-	public List<UcsawsTipoEvento> obtenerTipoEventoByIdEvento(Integer idEvento){
-		List<UcsawsTipoEvento> resultado;
-		UcsawsTipoEvento e = new UcsawsTipoEvento();
+	public List<UcsawsDepartamento> obtenerDepartamentoByIdEvento(Integer idEvento){
+		List<UcsawsDepartamento> resultado;
+		UcsawsDepartamento e = new UcsawsDepartamento();
 		String hql;
-		hql = "select obj from " + claseEntidad + " obj where  idEvento =:idEvento";
+		hql = "select obj from " + claseEntidad + " obj where  idEvento.idEvento =:idEvento";
 		Query query = em.createQuery(hql);
 		query.setParameter("idEvento", idEvento);
 		resultado = query.getResultList();
 		if (resultado.size()==0){
-			return new ArrayList<UcsawsTipoEvento>();
+			return new ArrayList<UcsawsDepartamento>();
 		}
 		else
 		 

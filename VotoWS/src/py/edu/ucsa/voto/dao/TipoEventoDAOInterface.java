@@ -15,5 +15,6 @@ public interface TipoEventoDAOInterface extends DAOInterface{
 	public List<UcsawsTipoEvento> getList();
 	//public UcsawsEvento obtenerEventoByFecha(Date fecha);
 	public UcsawsTipoEvento obtenerTipoEventoById(Integer idETipovento);
+	public List<UcsawsTipoEvento> obtenerTipoEventoByIdEvento(Integer idEvento);
 
 }
