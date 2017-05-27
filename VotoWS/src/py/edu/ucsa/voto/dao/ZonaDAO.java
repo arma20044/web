@@ -101,5 +101,22 @@ public class ZonaDAO extends AbstractSpringDAO implements ZonaDAOInterface {
 			 
 		 
 	}
+	
+	public List<UcsawsZona> obtenerZonaByIdDistrito(Integer IdDistrito){
+	    List<UcsawsZona> resultado;
+		UcsawsDistrito e = new UcsawsDistrito();
+		String hql;
+		hql = "select obj from " + claseEntidad + " obj where  ucsawsDistrito.idDistrito =:IdDistrito";
+		Query query = em.createQuery(hql);
+		query.setParameter("IdDistrito", IdDistrito);
+		resultado = query.getResultList();
+		if (resultado.size()==0){
+			return new ArrayList<UcsawsZona>();
+		}
+		else
+		 
+		    return resultado;
+			 
+	}
 
 }

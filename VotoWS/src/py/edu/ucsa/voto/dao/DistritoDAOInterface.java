@@ -16,5 +16,6 @@ public interface DistritoDAOInterface extends DAOInterface{
 	//public UcsawsEvento obtenerEventoByFecha(Date fecha);
 	public UcsawsDistrito obtenerDistritoById(Integer idDistrito);
 	public List<UcsawsDistrito> obtenerDistritoByIdEvento(Integer idEvento);
+	public List<UcsawsDistrito> obtenerDistritoByIdDepartamento(Integer IdDepartamento);
 
 }

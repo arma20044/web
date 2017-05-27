@@ -25,6 +25,7 @@ import py.edu.ucsa.voto.entity.UcsawsDistrito;
 import py.edu.ucsa.voto.entity.UcsawsEvento;
 import py.edu.ucsa.voto.entity.UcsawsGenero;
 import py.edu.ucsa.voto.entity.UcsawsListas;
+import py.edu.ucsa.voto.entity.UcsawsLocal;
 import py.edu.ucsa.voto.entity.UcsawsMesa;
 import py.edu.ucsa.voto.entity.UcsawsNacionalidad;
 import py.edu.ucsa.voto.entity.UcsawsPais;
@@ -78,19 +79,19 @@ public class CanalizadorDAO {
 
     @Autowired
     NacionalidadDAOInterface nacionalidadDAO;
-    
+
     @Autowired
     DepartamentoDAOInterface departamentoDAO;
-    
+
     @Autowired
     DistritoDAOInterface distritoDAO;
-    
+
     @Autowired
     ZonaDAOInterface zonaDAO;
-    
 
+    @Autowired
+    LocalDAOInterface localDAO;
     
- 
 
     @Transactional
     public QueryGenericoResponse parearClase(QueryGenericoRequest request)
@@ -432,7 +433,7 @@ public class CanalizadorDAO {
 	    UcsawsVotos voto = new UcsawsVotos();
 
 	    UcsawsListas l = listasDAO.obtenerListaByID(lista.get(0));
-	    UcsawsMesa mesa = mesaDAO.obtenerMesaByID(lista.get(1));
+	    UcsawsMesa mesa = mesaDAO.obtenerMesaById(lista.get(1));
 
 	    voto.setIdMesa(mesa);
 	    voto.setIdLista(l);
@@ -503,7 +504,7 @@ public class CanalizadorDAO {
 
 	    UcsawsTipoLista tipoLista = tipoListasDAO
 		    .obtenerTipoListaById(lista.get(0));
-	    UcsawsMesa mesa = mesaDAO.obtenerMesaByID(lista.get(1));
+	    UcsawsMesa mesa = mesaDAO.obtenerMesaById(lista.get(1));
 	    UcsawsEvento evento = eventoDAO.obtenerEventoById(lista.get(2));
 
 	    votoBlanco.setIdTipoLista(tipoLista);
@@ -1960,10 +1961,12 @@ public class CanalizadorDAO {
 
 	}
 
-	//ELIMINAR DELETE TIPO EVENTO
+	// ELIMINAR DELETE TIPO EVENTO
 	else if (request.getTipo_query_generico() == 66) {
 
-	    UcsawsTipoEvento tipoEvento = tipoEventoDAO.obtenerTipoEventoById((Integer.parseInt(request.getQuery_generico())));
+	    UcsawsTipoEvento tipoEvento = tipoEventoDAO
+		    .obtenerTipoEventoById((Integer.parseInt(request
+			    .getQuery_generico())));
 
 	    try {
 		tipoEventoDAO.delete(tipoEvento);
@@ -1977,12 +1980,13 @@ public class CanalizadorDAO {
 	    }
 
 	}
-	
-	//DEPARTAMENTOS BY ID EVENTO
+
+	// DEPARTAMENTOS BY ID EVENTO
 	else if (request.getTipo_query_generico() == 67) {
 	    List<UcsawsDepartamento> departamento = new ArrayList<UcsawsDepartamento>();
-	    departamento = departamentoDAO.obtenerDepartamentoByIdEvento((Integer
-		    .parseInt(request.getQuery_generico())));
+	    departamento = departamentoDAO
+		    .obtenerDepartamentoByIdEvento((Integer.parseInt(request
+			    .getQuery_generico())));
 
 	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
 
@@ -2019,7 +2023,7 @@ public class CanalizadorDAO {
 	    }
 
 	}
-	
+
 	// guardar DEPARTAMENTO
 	else if (request.getTipo_query_generico() == 68) {
 
@@ -2030,8 +2034,8 @@ public class CanalizadorDAO {
 		    UcsawsDepartamento.class);
 
 	    // genero.setUsuarioIns("sistema");
-	   // tipoEvento.setFchIns(new Date());
-	   // departamento.setIdDepartamento(null);
+	    // tipoEvento.setFchIns(new Date());
+	    // departamento.setIdDepartamento(null);
 
 	    UcsawsDepartamento comprobar = (UcsawsDepartamento) departamentoDAO
 		    .save(departamento);
@@ -2044,11 +2048,13 @@ public class CanalizadorDAO {
 	    }
 
 	}
-	
-	//ELIMINAR DELETE DEPARTAMENTO
+
+	// ELIMINAR DELETE DEPARTAMENTO
 	else if (request.getTipo_query_generico() == 69) {
 
-	    UcsawsDepartamento departamento = departamentoDAO.obtenerDepartamentoById((Integer.parseInt(request.getQuery_generico())));
+	    UcsawsDepartamento departamento = departamentoDAO
+		    .obtenerDepartamentoById((Integer.parseInt(request
+			    .getQuery_generico())));
 
 	    try {
 		departamentoDAO.delete(departamento);
@@ -2062,9 +2068,8 @@ public class CanalizadorDAO {
 	    }
 
 	}
-	
-	
-	//DISTRITOS BY ID EVENTO
+
+	// DISTRITOS BY ID EVENTO
 	else if (request.getTipo_query_generico() == 70) {
 	    List<UcsawsDistrito> distrito = new ArrayList<UcsawsDistrito>();
 	    distrito = distritoDAO.obtenerDistritoByIdEvento((Integer
@@ -2105,8 +2110,8 @@ public class CanalizadorDAO {
 	    }
 
 	}
-	
-	//DEPARTAMENTO BY ID 
+
+	// DEPARTAMENTO BY ID
 	else if (request.getTipo_query_generico() == 71) {
 	    UcsawsDepartamento departamento = new UcsawsDepartamento();
 	    departamento = departamentoDAO.obtenerDepartamentoById((Integer
@@ -2114,7 +2119,7 @@ public class CanalizadorDAO {
 
 	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
 
-	    if (!(departamento.getIdDepartamento()==null)) {
+	    if (!(departamento.getIdDepartamento() == null)) {
 
 		// parseo json
 		ObjectMapper mapperObj = new ObjectMapper();
@@ -2147,7 +2152,7 @@ public class CanalizadorDAO {
 	    }
 
 	}
-	
+
 	// guardar DISTRITO
 	else if (request.getTipo_query_generico() == 72) {
 
@@ -2158,8 +2163,7 @@ public class CanalizadorDAO {
 		    UcsawsDistrito.class);
 
 	    // genero.setUsuarioIns("sistema");
-	   // tipoEvento.setFchIns(new Date());
-	    
+	    // tipoEvento.setFchIns(new Date());
 
 	    UcsawsDistrito comprobar = (UcsawsDistrito) distritoDAO
 		    .save(distrito);
@@ -2172,11 +2176,12 @@ public class CanalizadorDAO {
 	    }
 
 	}
-	
-	//ELIMINAR DELETE DISTRITO
+
+	// ELIMINAR DELETE DISTRITO
 	else if (request.getTipo_query_generico() == 73) {
 
-	    UcsawsDistrito distrito = distritoDAO.obtenerDistritoById((Integer.parseInt(request.getQuery_generico())));
+	    UcsawsDistrito distrito = distritoDAO.obtenerDistritoById((Integer
+		    .parseInt(request.getQuery_generico())));
 
 	    try {
 		distritoDAO.delete(distrito);
@@ -2190,12 +2195,349 @@ public class CanalizadorDAO {
 	    }
 
 	}
-	
-	//ZONA BY ID EVENTO
+
+	// ZONA BY ID EVENTO
 	else if (request.getTipo_query_generico() == 74) {
 	    List<UcsawsZona> zona = new ArrayList<UcsawsZona>();
-	    zona = zonaDAO.obtenerZonaByIdEvento((Integer
+	    zona = zonaDAO.obtenerZonaByIdEvento((Integer.parseInt(request
+		    .getQuery_generico())));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(zona.isEmpty())) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(zona);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(zona);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
+	// guardar ZONA
+	else if (request.getTipo_query_generico() == 75) {
+
+	    // json string to java object;
+	    ObjectMapper mapper = new ObjectMapper();
+	    String jsonInString = request.getQuery_generico();
+	    UcsawsZona zona = mapper.readValue(jsonInString, UcsawsZona.class);
+
+	    // genero.setUsuarioIns("sistema");
+	    // tipoEvento.setFchIns(new Date());
+	    // departamento.setIdDepartamento(null);
+
+	    UcsawsZona comprobar = (UcsawsZona) zonaDAO.save(zona);
+	    if (comprobar.getIdZona() == null) {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("NO");
+	    } else {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("SI");
+	    }
+
+	}
+
+	// ELIMINAR DELETE ZONA
+	else if (request.getTipo_query_generico() == 76) {
+
+	    UcsawsZona zona = zonaDAO.obtenerZonaById((Integer.parseInt(request
+		    .getQuery_generico())));
+
+	    try {
+		zonaDAO.delete(zona);
+	    } catch (Exception e) {
+		System.out.println(e);
+		response.setCodigo(2244);
+		response.setQuery_generico_response("NO");
+	    } finally {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("SI");
+	    }
+
+	}
+
+	// DISTRITO BY ID
+	else if (request.getTipo_query_generico() == 77) {
+	    UcsawsDistrito distrito = new UcsawsDistrito();
+	    distrito = distritoDAO.obtenerDistritoById((Integer
 		    .parseInt(request.getQuery_generico())));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(distrito.getIdDistrito() == null)) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(distrito);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(distrito);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
+	// LOCAL BY ID
+	else if (request.getTipo_query_generico() == 78) {
+	    UcsawsLocal local = new UcsawsLocal();
+	    local = localDAO.obtenerLocalById((Integer.parseInt(request
+		    .getQuery_generico())));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(local.getIdLocal() == null)) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(local);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(local);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
+	// LOCAL BY ID EVENTO
+	else if (request.getTipo_query_generico() == 79) {
+	    List<UcsawsLocal> local = new ArrayList<UcsawsLocal>();
+	    local = localDAO.obtenerLocalByIdEvento((Integer.parseInt(request
+		    .getQuery_generico())));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(local.isEmpty())) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(local);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(local);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
+	// guardar LOCAL
+	else if (request.getTipo_query_generico() == 80) {
+
+	    // json string to java object;
+	    ObjectMapper mapper = new ObjectMapper();
+	    String jsonInString = request.getQuery_generico();
+	    UcsawsLocal local = mapper.readValue(jsonInString,
+		    UcsawsLocal.class);
+
+	    // genero.setUsuarioIns("sistema");
+	    // tipoEvento.setFchIns(new Date());
+	    // departamento.setIdDepartamento(null);
+
+	    UcsawsLocal comprobar = (UcsawsLocal) localDAO.save(local);
+	    if (comprobar.getIdLocal() == null) {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("NO");
+	    } else {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("SI");
+	    }
+
+	}
+
+	// ELIMINAR DELETE LOCAL
+	else if (request.getTipo_query_generico() == 81) {
+
+	    UcsawsLocal local = localDAO.obtenerLocalById((Integer
+		    .parseInt(request.getQuery_generico())));
+
+	    try {
+		localDAO.delete(local);
+	    } catch (Exception e) {
+		System.out.println(e);
+		response.setCodigo(2244);
+		response.setQuery_generico_response("NO");
+	    } finally {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("SI");
+	    }
+
+	}
+
+	// ZONA BY ID
+	else if (request.getTipo_query_generico() == 82) {
+	    UcsawsZona zona = new UcsawsZona();
+	    zona = zonaDAO.obtenerZonaById((Integer.parseInt(request
+		    .getQuery_generico())));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(zona.getIdZona() == null)) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(zona);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(zona);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
+	// DISTRITOS BY ID DEPARTAMENTO
+	else if (request.getTipo_query_generico() == 83) {
+	    List<UcsawsDistrito> distrito = new ArrayList<UcsawsDistrito>();
+	    distrito = distritoDAO.obtenerDistritoByIdDepartamento((Integer
+		    .parseInt(request.getQuery_generico())));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(distrito.isEmpty())) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(distrito);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(distrito);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
+	// ZONAs by id DISTRITO
+	else if (request.getTipo_query_generico() == 84) {
+	    List<UcsawsZona> zona = new ArrayList<UcsawsZona>();
+	    zona = zonaDAO.obtenerZonaByIdDistrito((Integer.parseInt(request
+		    .getQuery_generico())));
 
 	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
 
@@ -2233,66 +2575,22 @@ public class CanalizadorDAO {
 
 	}
 	
-	// guardar ZONA
-		else if (request.getTipo_query_generico() == 75) {
-
-		    // json string to java object;
-		    ObjectMapper mapper = new ObjectMapper();
-		    String jsonInString = request.getQuery_generico();
-		    UcsawsZona zona = mapper.readValue(jsonInString,
-			    UcsawsZona.class);
-
-		    // genero.setUsuarioIns("sistema");
-		   // tipoEvento.setFchIns(new Date());
-		   // departamento.setIdDepartamento(null);
-
-		    UcsawsZona comprobar = (UcsawsZona) zonaDAO
-			    .save(zona);
-		    if (comprobar.getIdZona() == null) {
-			response.setCodigo(2244);
-			response.setQuery_generico_response("NO");
-		    } else {
-			response.setCodigo(2244);
-			response.setQuery_generico_response("SI");
-		    }
-
-		}
-		
-		//ELIMINAR DELETE ZONA
-		else if (request.getTipo_query_generico() == 76) {
-
-		    UcsawsZona zona = zonaDAO.obtenerZonaById((Integer.parseInt(request.getQuery_generico())));
-
-		    try {
-			zonaDAO.delete(zona);
-		    } catch (Exception e) {
-			System.out.println(e);
-			response.setCodigo(2244);
-			response.setQuery_generico_response("NO");
-		    } finally {
-			response.setCodigo(2244);
-			response.setQuery_generico_response("SI");
-		    }
-
-		}
 	
-	
-	//DISTRITO BY ID 
-	else if (request.getTipo_query_generico() == 77) {
-	    UcsawsDistrito distrito = new UcsawsDistrito();
-	    distrito = distritoDAO.obtenerDistritoById((Integer
-		    .parseInt(request.getQuery_generico())));
+	// local by id ZONAs
+	else if (request.getTipo_query_generico() == 85) {
+	    List<UcsawsLocal> local = new ArrayList<UcsawsLocal>();
+	    local = localDAO.obtenerLocalByIdZona(((Integer.parseInt(request.getQuery_generico()))));
 
 	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
 
-	    if (!(distrito.getIdDistrito()==null)) {
+	    if (!(local.isEmpty())) {
 
 		// parseo json
 		ObjectMapper mapperObj = new ObjectMapper();
 		String jsonStr = "";
 		try {
 		    // get Employee object as a json string
-		    jsonStr = mapperObj.writeValueAsString(distrito);
+		    jsonStr = mapperObj.writeValueAsString(local);
 		    System.out.println(jsonStr);
 		} catch (IOException e) {
 		    // TODO Auto-generated catch block
@@ -2306,7 +2604,7 @@ public class CanalizadorDAO {
 		String jsonStr = "";
 		try {
 		    // get Employee object as a json string
-		    jsonStr = mapperObj.writeValueAsString(distrito);
+		    jsonStr = mapperObj.writeValueAsString(local);
 		    System.out.println(jsonStr);
 		} catch (IOException e) {
 		    // TODO Auto-generated catch block
@@ -2318,8 +2616,217 @@ public class CanalizadorDAO {
 	    }
 
 	}
-		
 	
+	
+	// LOCAL BY ID
+		else if (request.getTipo_query_generico() == 86) {
+		    UcsawsLocal local = new UcsawsLocal();
+		    local = localDAO.obtenerLocalById((Integer.parseInt(request
+			    .getQuery_generico())));
+
+		    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+		    if (!(local.getIdLocal() == null)) {
+
+			// parseo json
+			ObjectMapper mapperObj = new ObjectMapper();
+			String jsonStr = "";
+			try {
+			    // get Employee object as a json string
+			    jsonStr = mapperObj.writeValueAsString(local);
+			    System.out.println(jsonStr);
+			} catch (IOException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			}
+
+			response.setCodigo(2244);
+			response.setQuery_generico_response(jsonStr);
+		    } else {
+			ObjectMapper mapperObj = new ObjectMapper();
+			String jsonStr = "";
+			try {
+			    // get Employee object as a json string
+			    jsonStr = mapperObj.writeValueAsString(local);
+			    System.out.println(jsonStr);
+			} catch (IOException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			}
+
+			response.setCodigo(2244);
+			response.setQuery_generico_response(jsonStr);
+		    }
+
+		}
+	
+	// MESA BY ID EVENTO
+	else if (request.getTipo_query_generico() == 87) {
+	    List<UcsawsMesa> mesa = new ArrayList<UcsawsMesa>();
+	    mesa = mesaDAO.obtenerMesaByIdEvento((Integer.parseInt(request
+		    .getQuery_generico())));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(mesa.isEmpty())) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(mesa);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(mesa);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+
+	// guardar MESA
+	else if (request.getTipo_query_generico() == 88 ) {
+
+	    // json string to java object;
+	    ObjectMapper mapper = new ObjectMapper();
+	    String jsonInString = request.getQuery_generico();
+	    UcsawsMesa mesa = mapper.readValue(jsonInString,
+		    UcsawsMesa.class);
+
+	    // genero.setUsuarioIns("sistema");
+	    // tipoEvento.setFchIns(new Date());
+	    // departamento.setIdDepartamento(null);
+
+	    UcsawsMesa comprobar = (UcsawsMesa) mesaDAO.save(mesa);
+	    if (comprobar.getIdMesa() == null) {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("NO");
+	    } else {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("SI");
+	    }
+
+	}
+
+	// ELIMINAR DELETE MESA
+	else if (request.getTipo_query_generico() == 89 ) {
+
+	    UcsawsMesa mesa = mesaDAO.obtenerMesaById((Integer
+		    .parseInt(request.getQuery_generico())));
+
+	    try {
+		mesaDAO.delete(mesa);
+	    } catch (Exception e) {
+		System.out.println(e);
+		response.setCodigo(2244);
+		response.setQuery_generico_response("NO");
+	    } finally {
+		response.setCodigo(2244);
+		response.setQuery_generico_response("SI");
+	    }
+
+	}
+	
+	// MESA by id LOCAL
+	else if (request.getTipo_query_generico() == 90) {
+	    List<UcsawsMesa> mesa = new ArrayList<UcsawsMesa>();
+	    mesa = mesaDAO.obtenerMesaByIdLocal(((Integer.parseInt(request.getQuery_generico()))));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(mesa.isEmpty())) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(mesa);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(mesa);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
+	
+	// NACIONALIDAD BY ID EVENTO
+	else if (request.getTipo_query_generico() == 91) {
+	    List<UcsawsNacionalidad> nacionalidad = new ArrayList<UcsawsNacionalidad>();
+	    nacionalidad = nacionalidadDAO.obtenerNacionalidadByEvento((Integer.parseInt(request
+		    .getQuery_generico())));
+
+	    // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+	    if (!(nacionalidad.isEmpty())) {
+
+		// parseo json
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(nacionalidad);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    } else {
+		ObjectMapper mapperObj = new ObjectMapper();
+		String jsonStr = "";
+		try {
+		    // get Employee object as a json string
+		    jsonStr = mapperObj.writeValueAsString(nacionalidad);
+		    System.out.println(jsonStr);
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    e.printStackTrace();
+		}
+
+		response.setCodigo(2244);
+		response.setQuery_generico_response(jsonStr);
+	    }
+
+	}
 
 	return response;
 

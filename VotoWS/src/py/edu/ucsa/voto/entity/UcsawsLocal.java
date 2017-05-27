@@ -35,7 +35,7 @@ public class UcsawsLocal implements java.io.Serializable {
 	@Column(name = "id_local", nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
 	@SequenceGenerator(name = "generator", sequenceName = "ucsaws_local_seq", allocationSize = 1)
-	private int idLocal;
+	private Integer idLocal;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@Cascade(value = { CascadeType.LOCK })
@@ -71,12 +71,12 @@ public class UcsawsLocal implements java.io.Serializable {
 	public UcsawsLocal() {
 	}
 
-	public UcsawsLocal(int idLocal, UcsawsEvento idEvento) {
+	public UcsawsLocal(Integer idLocal, UcsawsEvento idEvento) {
 		this.idLocal = idLocal;
 		this.idEvento = idEvento;
 	}
 
-	public UcsawsLocal(int idLocal, UcsawsZona ucsawsZona, String descLocal,
+	public UcsawsLocal(Integer idLocal, UcsawsZona ucsawsZona, String descLocal,
 			String nroLocal, String usuarioIns, String usuarioUpd, Date fchIns,
 			Date fchUpd, UcsawsEvento idEvento) {
 		this.idLocal = idLocal;
@@ -91,11 +91,11 @@ public class UcsawsLocal implements java.io.Serializable {
 		
 	}
 
-	public int getIdLocal() {
+	public Integer getIdLocal() {
 		return this.idLocal;
 	}
 
-	public void setIdLocal(int idLocal) {
+	public void setIdLocal(Integer idLocal) {
 		this.idLocal = idLocal;
 	}
 

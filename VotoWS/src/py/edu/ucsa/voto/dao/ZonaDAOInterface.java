@@ -17,5 +17,5 @@ public interface ZonaDAOInterface extends DAOInterface{
 	//public UcsawsEvento obtenerEventoByFecha(Date fecha);
 	public UcsawsZona obtenerZonaById(Integer idZona);
 	public List<UcsawsZona> obtenerZonaByIdEvento(Integer idEvento);
-
+	public List<UcsawsZona> obtenerZonaByIdDistrito(Integer IdDistrito);
 }

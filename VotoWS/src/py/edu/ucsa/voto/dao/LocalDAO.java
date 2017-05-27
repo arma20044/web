@@ -9,36 +9,38 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import py.edu.ucsa.voto.entity.UcsawsDistrito;
+import py.edu.ucsa.voto.entity.UcsawsLocal;
+import py.edu.ucsa.voto.entity.UcsawsZona;
 
 
 
 
 
-@Repository("distritoDAO")
+@Repository("localDAO")
 @Transactional(readOnly = true)
-public class DistritoDAO extends AbstractSpringDAO implements DistritoDAOInterface {
+public class LocalDAO extends AbstractSpringDAO implements LocalDAOInterface {
 
-	public DistritoDAO() {
-		claseEntidad = "UcsawsDistrito";
-		nombreCampoID = "idDistrito";
-		campoOrden = "idDistrito";
+	public LocalDAO() {
+		claseEntidad = "UcsawsLocal";
+		nombreCampoID = "idLocal";
+		campoOrden = "idLocal";
 	}
 
 	@Transactional
-	public void saveOrUpdate(UcsawsDistrito o) {
-		if (o.getIdDistrito() == null)
+	public void saveOrUpdate(UcsawsLocal o) {
+		if (o.getIdLocal() == null)
 			super.save(o);
 		else
 			super.update(o);
 	}
 
 	@Transactional
-	public void delete(UcsawsDistrito o) {
+	public void delete(UcsawsLocal o) {
 		super.delete(o);
 	}
 
 	@Transactional
-	public List<UcsawsDistrito> getList() {
+	public List<UcsawsLocal> getList() {
 		return super.getList();
 	}
 	
@@ -65,34 +67,34 @@ public class DistritoDAO extends AbstractSpringDAO implements DistritoDAOInterfa
 		
 	}
 	*/
-	public UcsawsDistrito obtenerDistritoById(Integer idDistrito){
-		List<UcsawsDistrito> resultado;
-		UcsawsDistrito e = new UcsawsDistrito();
+	public UcsawsLocal obtenerLocalById(Integer idLocal){
+		List<UcsawsLocal> resultado;
+		UcsawsLocal e = new UcsawsLocal();
 		String hql;
-		hql = "select obj from " + claseEntidad + " obj where  id =:idDistrito";
+		hql = "select obj from " + claseEntidad + " obj where  id =:idLocal";
 		Query query = em.createQuery(hql);
-		query.setParameter("idDistrito", idDistrito);
+		query.setParameter("idLocal", idLocal);
 		resultado = query.getResultList();
 		if (resultado.size()==0){
 			return e;
 		}
 		else
 			if(resultado.size()==1){
-				return (UcsawsDistrito) resultado.get(0);
+				return (UcsawsLocal) resultado.get(0);
 			}
-		return (UcsawsDistrito) resultado.get(0);
+		return (UcsawsLocal) resultado.get(0);
 	}
 	
-	public List<UcsawsDistrito> obtenerDistritoByIdEvento(Integer idEvento){
-		List<UcsawsDistrito> resultado;
-		UcsawsDistrito e = new UcsawsDistrito();
+	public List<UcsawsLocal> obtenerLocalByIdEvento(Integer idEvento){
+		List<UcsawsLocal> resultado;
+		UcsawsLocal e = new UcsawsLocal();
 		String hql;
 		hql = "select obj from " + claseEntidad + " obj where  idEvento.idEvento =:idEvento";
 		Query query = em.createQuery(hql);
 		query.setParameter("idEvento", idEvento);
 		resultado = query.getResultList();
 		if (resultado.size()==0){
-			return new ArrayList<UcsawsDistrito>();
+			return new ArrayList<UcsawsLocal>();
 		}
 		else
 		 
@@ -101,22 +103,21 @@ public class DistritoDAO extends AbstractSpringDAO implements DistritoDAOInterfa
 		 
 	}
 	
-	public List<UcsawsDistrito> obtenerDistritoByIdDepartamento(Integer IdDepartamento){
-	    
-	    List<UcsawsDistrito> resultado;
-		UcsawsDistrito e = new UcsawsDistrito();
+	public List<UcsawsLocal> obtenerLocalByIdZona(Integer idZona){
+	    List<UcsawsLocal> resultado;
+	    UcsawsLocal e = new UcsawsLocal();
 		String hql;
-		hql = "select obj from " + claseEntidad + " obj where  ucsawsDepartamento.idDepartamento =:IdDepartamento";
+		hql = "select obj from " + claseEntidad + " obj where  ucsawsZona.idZona =:idZona";
 		Query query = em.createQuery(hql);
-		query.setParameter("IdDepartamento", IdDepartamento);
+		query.setParameter("idZona", idZona);
 		resultado = query.getResultList();
 		if (resultado.size()==0){
-			return new ArrayList<UcsawsDistrito>();
+			return new ArrayList<UcsawsLocal>();
 		}
 		else
 		 
 		    return resultado;
-		
+			 
 	}
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import py.edu.ucsa.voto.entity.UcsawsEvento;
+import py.edu.ucsa.voto.entity.UcsawsLocal;
 import py.edu.ucsa.voto.entity.UcsawsMesa;
 
 
@@ -46,7 +47,7 @@ public class MesaDAO extends AbstractSpringDAO implements MesaDAOInterface {
 	
 			
 			
-	public UcsawsMesa obtenerMesaByID(Integer idMesa){
+	public UcsawsMesa obtenerMesaById(Integer idMesa){
 		List<UcsawsMesa> resultado;
 		UcsawsMesa e = new UcsawsMesa();
 		String hql;
@@ -66,5 +67,43 @@ public class MesaDAO extends AbstractSpringDAO implements MesaDAOInterface {
 		//return null;
 		
 	}
+	
+	public List<UcsawsMesa> obtenerMesaByIdLocal(Integer idLocal){
+	    List<UcsawsMesa> resultado;
+	    UcsawsLocal e = new UcsawsLocal();
+		String hql;
+		hql = "select obj from " + claseEntidad + " obj where  ucsawsLocal.idLocal =:idLocal";
+		Query query = em.createQuery(hql);
+		query.setParameter("idLocal", idLocal);
+		resultado = query.getResultList();
+		if (resultado.size()==0){
+			return new ArrayList<UcsawsMesa>();
+		}
+		else
+		 
+		    return resultado;
+			 
+	}
+	
+	
+	public List<UcsawsMesa> obtenerMesaByIdEvento(Integer idEvento){
+		List<UcsawsMesa> resultado;
+		UcsawsLocal e = new UcsawsLocal();
+		String hql;
+		hql = "select obj from " + claseEntidad + " obj where  idEvento.idEvento =:idEvento";
+		Query query = em.createQuery(hql);
+		query.setParameter("idEvento", idEvento);
+		resultado = query.getResultList();
+		if (resultado.size()==0){
+			return new ArrayList<UcsawsMesa>();
+		}
+		else
+		 
+		    return resultado;
+			 
+		 
+	}
+	
+
 
 }
