@@ -31,6 +31,7 @@ import py.edu.ucsa.voto.entity.UcsawsMesa;
 import py.edu.ucsa.voto.entity.UcsawsNacionalidad;
 import py.edu.ucsa.voto.entity.UcsawsPais;
 import py.edu.ucsa.voto.entity.UcsawsPersona;
+import py.edu.ucsa.voto.entity.UcsawsRoles;
 import py.edu.ucsa.voto.entity.UcsawsTipoEvento;
 import py.edu.ucsa.voto.entity.UcsawsTipoLista;
 import py.edu.ucsa.voto.entity.UcsawsUsers;
@@ -98,6 +99,9 @@ public class CanalizadorDAO {
 
   @Autowired
   CandidatosDAOInterface candidatosDAO;
+  
+  @Autowired
+  RolesDAOInterface rolesDAO;
 
 
 
@@ -3317,7 +3321,194 @@ public class CanalizadorDAO {
       }
 
     }
+    
+    // consultar USER by evento
+    else if (request.getTipo_query_generico() == 108) {
 
+      // json string to List<String>;
+
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+     // String id = mapper.readValue(jsonInString, String.class);
+
+      List<UcsawsUsers> user = new ArrayList<UcsawsUsers>();
+      user = usersDAO.obtenerUserByEvento(Integer.parseInt(jsonInString));
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(user.isEmpty())) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(user);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(user);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
+    
+    else if (request.getTipo_query_generico() == 109) {
+      
+    }
+    
+    else if (request.getTipo_query_generico() == 110) {
+      
+    }
+    
+    else if (request.getTipo_query_generico() == 111) {
+      
+    }
+    
+    // ROLES BY ID EVENTO
+    else if (request.getTipo_query_generico() == 112) {
+      List<UcsawsRoles> roles = new ArrayList<UcsawsRoles>();
+      roles = rolesDAO.obtenerRolesByEvento((Integer.parseInt(request.getQuery_generico())));
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(roles.isEmpty())) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(roles);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(roles);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
+    
+    // ROL BY ID
+    else if (request.getTipo_query_generico() == 113) {
+      UcsawsRoles rol = new UcsawsRoles();
+      rol = rolesDAO.obtenerRolByID(Integer.parseInt(request.getQuery_generico()));
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(rol.getIdRol() == null)) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(rol);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(rol);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
+
+    
+    // guardar ROL
+    else if (request.getTipo_query_generico() == 114) {
+
+      // json string to java object;
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      UcsawsRoles rol = mapper.readValue(jsonInString, UcsawsRoles.class);
+
+      // genero.setUsuarioIns("sistema");
+      // tipoEvento.setFchIns(new Date());
+      // departamento.setIdDepartamento(null);
+
+      UcsawsRoles comprobar = (UcsawsRoles) rolesDAO.save(rol);
+      if (comprobar.getIdRol() == null) {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } else {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("SI");
+      }
+
+    }
+    
+    // ELIMINAR DELETE ROL
+    else if (request.getTipo_query_generico() == 115) {
+      
+      // json string to java object;
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      UcsawsRoles rol = mapper.readValue(jsonInString, UcsawsRoles.class);
+
+      try {
+        rolesDAO.delete(rol);
+      } catch (Exception e) {
+        System.out.println(e);
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } finally {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("SI");
+      }
+
+    }
+    
     return response;
 
   }

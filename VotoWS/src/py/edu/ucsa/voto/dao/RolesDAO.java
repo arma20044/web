@@ -1,6 +1,9 @@
 package py.edu.ucsa.voto.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,5 +40,45 @@ RolesDAOInterface {
 	public List<UcsawsRoles> getList() {
 		return super.getList();
 	}
+	
+	
+    public UcsawsRoles  obtenerRolByID(Integer idRol){
+      
+    List<UcsawsRoles> resultado;
+    UcsawsRoles e = new UcsawsRoles();
+    String hql;
+    hql = "select obj from " + claseEntidad
+        + " obj where  idRol =:idRol";
+    Query query = em.createQuery(hql);
+    query.setParameter("idRol", idRol);
+    resultado = query.getResultList();
+    if (resultado.size() == 0) {
+        return new  UcsawsRoles();
+    } else if (resultado.size() == 1) {
+        return  resultado.get(0) ;
+    }
+    return resultado.get(0)  ;
+    }
+    
+    
+    public List<UcsawsRoles> obtenerRolesByEvento(Integer idEvento){
+    
+    List<UcsawsRoles> resultado;
+    UcsawsRoles e = new UcsawsRoles();
+    String hql;
+    hql = "select obj from " + claseEntidad
+        + " obj where  ucsawsEvento.idEvento =:idEvento";
+    Query query = em.createQuery(hql);
+    query.setParameter("idEvento", idEvento);
+    resultado = query.getResultList();
+    if (resultado.size() == 0) {
+        return new ArrayList<UcsawsRoles>();
+    } else if (resultado.size() == 1) {
+        return  resultado ;
+    }
+    return resultado ;
+     
+    
+    }
 
 }

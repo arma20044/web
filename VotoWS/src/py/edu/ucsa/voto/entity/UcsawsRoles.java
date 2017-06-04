@@ -50,7 +50,7 @@ implements Serializable {
 	@SequenceGenerator(name = "generator", sequenceName = "ucsaws_roles_seq", allocationSize = 1)
 	private Integer idRol;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@Cascade(value = { CascadeType.LOCK })
 	@JoinColumn(name = "id_Evento", referencedColumnName = "id_Evento")
 	private UcsawsEvento ucsawsEvento;

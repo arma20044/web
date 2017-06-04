@@ -1,4 +1,5 @@
 package py.edu.ucsa.voto.entity;
+
 // Generated 25/04/2017 03:26:32 PM by Hibernate Tools 4.3.1
 
 import java.util.Date;
@@ -26,159 +27,167 @@ import org.hibernate.annotations.CascadeType;
 @Table(name = "ucsaws_users")
 public class UcsawsUsers implements java.io.Serializable {
 
-	@Id
-	@Column(name = "id_user", nullable = false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
-	@SequenceGenerator(name = "generator", sequenceName = "ucsaws_users_seq", allocationSize = 1)
-	private Integer idUser;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@Cascade(value = { CascadeType.LOCK })
-	@JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
-	private UcsawsPersona ucsawsPersona;
-	
-	@Column(name = "fch_ins", nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fchIns;
-	
-	@Column(name = "fch_upd", nullable = true)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fchUpd;
-	
-	@Column(name = "usuario_ins", nullable = false)
-	private String usuarioIns;
-	
-	@Column(name = "usuario_upd", nullable = true)
-	private String usuarioUpd;
-	
-	@Column(name = "pass", nullable = false)
-	private String pass;
-	
-	@Column(name = "es_admin", nullable = false)
-	private Boolean esAdmin;
-	
-	@Column(name = "usuario", nullable = false)
-	private String usuario;
-	
-	@Column(name = "id_evento", nullable = false)
-	private Integer idEvento;
-	
-	@Column(name = "id_rol", nullable = false)
-	private Integer idRol;
+  @Id
+  @Column(name = "id_user", nullable = false)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator")
+  @SequenceGenerator(name = "generator", sequenceName = "ucsaws_users_seq", allocationSize = 1)
+  private Integer idUser;
 
-	public UcsawsUsers() {
-	}
+  @ManyToOne(fetch = FetchType.EAGER)
+  @Cascade(value = {CascadeType.LOCK})
+  @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
+  private UcsawsPersona ucsawsPersona;
 
-	public UcsawsUsers(Integer idUser, UcsawsPersona ucsawsPersona, Date fchIns,
-			String usuarioIns) {
-		this.idUser = idUser;
-		this.ucsawsPersona = ucsawsPersona;
-		this.fchIns = fchIns;
-		this.usuarioIns = usuarioIns;
-	}
+  @Column(name = "fch_ins", nullable = false)
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date fchIns;
 
-	public UcsawsUsers(Integer idUser, UcsawsPersona ucsawsPersona, Date fchIns,
-			Date fchUpd, String usuarioIns, String usuarioUpd, String pass,
-			Boolean esAdmin, String usuario, Integer idEvento, Integer idRol) {
-		this.idUser = idUser;
-		this.ucsawsPersona = ucsawsPersona;
-		this.fchIns = fchIns;
-		this.fchUpd = fchUpd;
-		this.usuarioIns = usuarioIns;
-		this.usuarioUpd = usuarioUpd;
-		this.pass = pass;
-		this.esAdmin = esAdmin;
-		this.usuario = usuario;
-		this.idEvento = idEvento;
-		this.idRol = idRol;
-	}
+  @Column(name = "fch_upd", nullable = true)
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date fchUpd;
 
-	public Integer getIdUser() {
-		return this.idUser;
-	}
+  @Column(name = "usuario_ins", nullable = false)
+  private String usuarioIns;
 
-	public void setIdUser(Integer idUser) {
-		this.idUser = idUser;
-	}
+  @Column(name = "usuario_upd", nullable = true)
+  private String usuarioUpd;
 
-	public UcsawsPersona getUcsawsPersona() {
-		return this.ucsawsPersona;
-	}
+  @Column(name = "pass", nullable = false)
+  private String pass;
 
-	public void setUcsawsPersona(UcsawsPersona ucsawsPersona) {
-		this.ucsawsPersona = ucsawsPersona;
-	}
+  @Column(name = "es_admin", nullable = false)
+  private Boolean esAdmin;
 
-	public Date getFchIns() {
-		return this.fchIns;
-	}
+  @Column(name = "usuario", nullable = false)
+  private String usuario;
 
-	public void setFchIns(Date fchIns) {
-		this.fchIns = fchIns;
-	}
 
-	public Date getFchUpd() {
-		return this.fchUpd;
-	}
+  @ManyToOne(fetch = FetchType.EAGER)
+  @Cascade(value = {CascadeType.LOCK})
+  @JoinColumn(name = "id_evento", referencedColumnName = "id_evento")
+  private UcsawsEvento idEvento;
+  
+  @ManyToOne(fetch = FetchType.EAGER)
+  @Cascade(value = {CascadeType.LOCK})
+  @JoinColumn(name = "id_rol", referencedColumnName = "id_rol")
+  private UcsawsRoles idRol;
 
-	public void setFchUpd(Date fchUpd) {
-		this.fchUpd = fchUpd;
-	}
 
-	public String getUsuarioIns() {
-		return this.usuarioIns;
-	}
 
-	public void setUsuarioIns(String usuarioIns) {
-		this.usuarioIns = usuarioIns;
-	}
+  public UcsawsUsers() {}
 
-	public String getUsuarioUpd() {
-		return this.usuarioUpd;
-	}
+  public UcsawsUsers(Integer idUser, UcsawsPersona ucsawsPersona, Date fchIns, String usuarioIns) {
+    this.idUser = idUser;
+    this.ucsawsPersona = ucsawsPersona;
+    this.fchIns = fchIns;
+    this.usuarioIns = usuarioIns;
+  }
 
-	public void setUsuarioUpd(String usuarioUpd) {
-		this.usuarioUpd = usuarioUpd;
-	}
+  public UcsawsUsers(Integer idUser, UcsawsPersona ucsawsPersona, Date fchIns, Date fchUpd,
+      String usuarioIns, String usuarioUpd, String pass, Boolean esAdmin, String usuario,
+      UcsawsEvento idEvento, UcsawsRoles idRol) {
+    this.idUser = idUser;
+    this.ucsawsPersona = ucsawsPersona;
+    this.fchIns = fchIns;
+    this.fchUpd = fchUpd;
+    this.usuarioIns = usuarioIns;
+    this.usuarioUpd = usuarioUpd;
+    this.pass = pass;
+    this.esAdmin = esAdmin;
+    this.usuario = usuario;
+    this.idEvento = idEvento;
+    this.idRol = idRol;
+  }
 
-	public String getPass() {
-		return this.pass;
-	}
+  public Integer getIdUser() {
+    return this.idUser;
+  }
 
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+  public void setIdUser(Integer idUser) {
+    this.idUser = idUser;
+  }
 
-	public Boolean getEsAdmin() {
-		return this.esAdmin;
-	}
+  public UcsawsPersona getUcsawsPersona() {
+    return this.ucsawsPersona;
+  }
 
-	public void setEsAdmin(Boolean esAdmin) {
-		this.esAdmin = esAdmin;
-	}
+  public void setUcsawsPersona(UcsawsPersona ucsawsPersona) {
+    this.ucsawsPersona = ucsawsPersona;
+  }
 
-	public String getUsuario() {
-		return this.usuario;
-	}
+  public Date getFchIns() {
+    return this.fchIns;
+  }
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
+  public void setFchIns(Date fchIns) {
+    this.fchIns = fchIns;
+  }
 
-	public Integer getIdEvento() {
-		return this.idEvento;
-	}
+  public Date getFchUpd() {
+    return this.fchUpd;
+  }
 
-	public void setIdEvento(Integer idEvento) {
-		this.idEvento = idEvento;
-	}
+  public void setFchUpd(Date fchUpd) {
+    this.fchUpd = fchUpd;
+  }
 
-	public Integer getIdRol() {
-		return this.idRol;
-	}
+  public String getUsuarioIns() {
+    return this.usuarioIns;
+  }
 
-	public void setIdRol(Integer idRol) {
-		this.idRol = idRol;
-	}
+  public void setUsuarioIns(String usuarioIns) {
+    this.usuarioIns = usuarioIns;
+  }
+
+  public String getUsuarioUpd() {
+    return this.usuarioUpd;
+  }
+
+  public void setUsuarioUpd(String usuarioUpd) {
+    this.usuarioUpd = usuarioUpd;
+  }
+
+  public String getPass() {
+    return this.pass;
+  }
+
+  public void setPass(String pass) {
+    this.pass = pass;
+  }
+
+  public Boolean getEsAdmin() {
+    return this.esAdmin;
+  }
+
+  public void setEsAdmin(Boolean esAdmin) {
+    this.esAdmin = esAdmin;
+  }
+
+  public String getUsuario() {
+    return this.usuario;
+  }
+
+  public void setUsuario(String usuario) {
+    this.usuario = usuario;
+  }
+
+  public UcsawsEvento getIdEvento() {
+    return idEvento;
+  }
+
+  public void setIdEvento(UcsawsEvento idEvento) {
+    this.idEvento = idEvento;
+  }
+
+  public UcsawsRoles getIdRol() {
+    return idRol;
+  }
+
+  public void setIdRol(UcsawsRoles idRol) {
+    this.idRol = idRol;
+  }
+
+
+
 
 }
