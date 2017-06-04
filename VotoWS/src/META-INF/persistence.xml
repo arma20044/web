@@ -39,6 +39,8 @@
 		
 		<class>py.edu.ucsa.voto.entity.UcsawsVotosBlanco</class>
 		
+		<class>py.edu.ucsa.voto.entity.UcsawsCandidatos</class>
+		
 		
 		<exclude-unlisted-classes />
 		<properties>

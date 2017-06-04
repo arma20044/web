@@ -1,6 +1,5 @@
 package py.edu.ucsa.voto.dao;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,33 +10,34 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import py.edu.ucsa.voto.entity.Generic;
-import py.edu.ucsa.voto.entity.UcsawsPersona;
+import py.edu.ucsa.voto.entity.UcsawsCandidatos;
 
-@Repository("personaDAO")
+
+@Repository("candidatosDAO")
 @Transactional(readOnly = true)
-public class PersonaDAO extends AbstractSpringDAO implements PersonaDAOInterface {
+public class CandidatosDAO extends AbstractSpringDAO implements CandidatosDAOInterface {
 
-    public PersonaDAO() {
-	claseEntidad = "UcsawsPersona";
-	nombreCampoID = "idPersona";
-	campoOrden = "idPersona";
+    public CandidatosDAO() {
+	claseEntidad = "UcsawsCandidatos";
+	nombreCampoID = "idCandidatos";
+	campoOrden = "idCandidatos";
     }
 
     @Transactional
-    public void saveOrUpdate(UcsawsPersona o) {
-	if (o.getIdEvento() == null)
+    public void saveOrUpdate(UcsawsCandidatos o) {
+	if (o.getIdCandidatos() == null)
 	    super.save(o);
 	else
 	    super.update(o);
     }
 
     @Transactional
-    public void delete(UcsawsPersona o) {
+    public void delete(UcsawsCandidatos o) {
 	super.delete(o);
     }
 
     @Transactional
-    public List<UcsawsPersona> getList() {
+    public List<UcsawsCandidatos> getList() {
 	return super.getList();
     }
 
@@ -151,10 +151,29 @@ public class PersonaDAO extends AbstractSpringDAO implements PersonaDAOInterface
 
     }
     */
-    public List<UcsawsPersona> obtenerPersonaByEvento(Integer idEvento){
+    public UcsawsCandidatos  obtenerCandidatosByID(Integer idCandidato){
 	
-	List<UcsawsPersona> resultado;
-	UcsawsPersona e = new UcsawsPersona();
+	List<UcsawsCandidatos> resultado;
+	UcsawsCandidatos e = new UcsawsCandidatos();
+	String hql;
+	hql = "select obj from " + claseEntidad
+		+ " obj where  id =:idCandidato";
+	Query query = em.createQuery(hql);
+	query.setParameter("idCandidato", idCandidato);
+	resultado = query.getResultList();
+	if (resultado.size() == 0) {
+	    return new  UcsawsCandidatos();
+	} else if (resultado.size() == 1) {
+	    return  resultado.get(0) ;
+	}
+	return resultado.get(0)  ;
+    }
+    
+    
+    public List<UcsawsCandidatos> obtenerCandidatosByEvento(Integer idEvento){
+	
+	List<UcsawsCandidatos> resultado;
+	UcsawsCandidatos e = new UcsawsCandidatos();
 	String hql;
 	hql = "select obj from " + claseEntidad
 		+ " obj where  idEvento.idEvento =:idEvento";
@@ -162,7 +181,7 @@ public class PersonaDAO extends AbstractSpringDAO implements PersonaDAOInterface
 	query.setParameter("idEvento", idEvento);
 	resultado = query.getResultList();
 	if (resultado.size() == 0) {
-	    return new ArrayList<UcsawsPersona>();
+	    return new ArrayList<UcsawsCandidatos>();
 	} else if (resultado.size() == 1) {
 	    return  resultado ;
 	}
@@ -171,64 +190,70 @@ public class PersonaDAO extends AbstractSpringDAO implements PersonaDAOInterface
 	
     }
     
-    public List<UcsawsPersona> obtenerPersonaByEventoNoCandidatas(Integer idEvento){
-      
-    List<UcsawsPersona> resultado;
-    UcsawsPersona e = new UcsawsPersona();
-    String hql;
-    hql = "select obj from " + claseEntidad
-        + " obj where  idEvento.idEvento =:idEvento and idPersona.idPersona not in "
-        + "(select idPersona.idPersona from UcsawsCandidatos where idEvento.idEvento =:idEvento)";
-    Query query = em.createQuery(hql);
-    query.setParameter("idEvento", idEvento);
-    resultado = query.getResultList();
-    if (resultado.size() == 0) {
-        return new ArrayList<UcsawsPersona>();
-    } else if (resultado.size() == 1) {
-        return  resultado ;
-    }
-    return resultado ;
-     
-    
-    }
-    
-    public List<UcsawsPersona> obtenerPersonaByCedula(Integer cedula){
+ /*   public UcsawsNacionalidad obtenerNacionalidadByCodigoYNombre(String codigo, String nombre, Integer idEvento){
 	
-	List<UcsawsPersona> resultado;
-	UcsawsPersona e = new UcsawsPersona();
+	
+	
+	
+	 List<UcsawsNacionalidad>  resultado = new ArrayList<UcsawsNacionalidad>(); 
+	 
 	String hql;
-	hql = "select obj from " + claseEntidad
-		+ " obj where  ci =:ci";
+	hql = "select obj from " + claseEntidad + " obj where  idEvento.idEvento =:idEvento and codNacionalidad =:codigo"
+		+ " and descNacionalidad =:nombre";
 	Query query = em.createQuery(hql);
-	query.setParameter("ci",new BigDecimal(cedula));
+	query.setParameter("idEvento", idEvento);
+	query.setParameter("codigo", codigo);
+	query.setParameter("nombre", nombre);
 	resultado = query.getResultList();
 	if (resultado.size() == 0) {
-	    return new ArrayList<UcsawsPersona>();
+	    return new UcsawsNacionalidad();
 	} else if (resultado.size() == 1) {
-	    return  resultado ;
+	    return  resultado.get(0) ;
 	}
-	return resultado ;
-	 
+	return resultado.get(0) ;
 	
-    }
+    }*/
     
-    public UcsawsPersona obtenerPersonaByIdPersona(Integer idPersona){
+  /*  public UcsawsNacionalidad obtenerNacionalidadByPaisyEvento(Integer idPais, Integer idEvento){
 	
-	UcsawsPersona resultado;
-	UcsawsPersona e = new UcsawsPersona();
+	
+	
+	
+	 List<UcsawsNacionalidad>  resultado = new ArrayList<UcsawsNacionalidad>(); 
+	 
 	String hql;
-	hql = "select obj from " + claseEntidad
-		+ " obj where  id =:idPersona";
+	hql = "select obj from " + claseEntidad + " obj where  idEvento.idEvento =:idEvento and ucsawsPais.idPais =:idPais";
 	Query query = em.createQuery(hql);
-	query.setParameter("idPersona",idPersona);
-	resultado = (UcsawsPersona) query.getSingleResult();
-	if (resultado.getIdPersona() == null) {
-	    return new  UcsawsPersona ();
-	} else   {
-	    return  resultado ;
+	query.setParameter("idEvento", idEvento);
+	query.setParameter("idPais", idPais);
+ 	resultado = query.getResultList();
+	if (resultado.size() == 0) {
+	    return new UcsawsNacionalidad();
+	} else if (resultado.size() == 1) {
+	    return  resultado.get(0) ;
 	}
+	return resultado.get(0) ;
 	
-	
-    }
+    }*/
 
+    
+    
+   /* public UcsawsNacionalidad obtenerNacionalidadByPais (Integer idPais ){
+	
+	
+	 List<UcsawsNacionalidad>  resultado = new ArrayList<UcsawsNacionalidad>(); 
+	 
+	String hql;
+	hql = "select obj from " + claseEntidad + " obj where  ucsawsPais.idPais =:idPais";
+	Query query = em.createQuery(hql);
+ 	query.setParameter("idPais", idPais);
+ 	resultado = query.getResultList();
+	if (resultado.size() == 0) {
+	    return new UcsawsNacionalidad();
+	} else if (resultado.size() == 1) {
+	    return  resultado.get(0) ;
+	}
+	return resultado.get(0) ;
+	
+    }*/
 }

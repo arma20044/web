@@ -1,5 +1,6 @@
 package py.edu.ucsa.voto.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import py.edu.ucsa.voto.entity.UcsawsEvento;
 import py.edu.ucsa.voto.entity.UcsawsListas;
+import py.edu.ucsa.voto.entity.UcsawsNacionalidad;
 import py.edu.ucsa.voto.entity.UcsawsUsers;
 
 @Repository("listasDAO")
@@ -107,6 +109,26 @@ public class ListasDAO extends AbstractSpringDAO implements ListasDAOInterface {
 		return (UcsawsListas) resultado.get(0);
 	
 	}
+	
+	    public List<UcsawsListas> obtenerListaByEvento(Integer idEvento){
+		
+		List<UcsawsListas> resultado;
+		UcsawsListas e = new UcsawsListas();
+		String hql;
+		hql = "select obj from " + claseEntidad
+			+ " obj where  idEvento.idEvento =:idEvento";
+		Query query = em.createQuery(hql);
+		query.setParameter("idEvento", idEvento);
+		resultado = query.getResultList();
+		if (resultado.size() == 0) {
+		    return new ArrayList<UcsawsListas>();
+		} else if (resultado.size() > 0) {
+		    return  resultado ;
+		}
+		return resultado ;
+		 
+		
+	    }
 	
 
 }

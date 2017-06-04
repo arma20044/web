@@ -17,5 +17,7 @@ public interface TipoListasDAOInterface extends DAOInterface {
 	public UcsawsTipoLista obtenerTipoListaById(Integer idLista);
 	
 	public UcsawsTipoLista obtenerTipoListaByCodigo(String codigo, Integer idEvento);
+	
+	public List<UcsawsTipoLista> obtenerTipoListaByIdEvento(Integer idEvento);
 
 }

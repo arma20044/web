@@ -16,6 +16,7 @@ public interface PersonaDAOInterface extends DAOInterface{
 	public List<UcsawsPersona> obtenerPersonaByEvento(Integer idEvento);
 	public List<UcsawsPersona> obtenerPersonaByCedula(Integer cedula);
 	public UcsawsPersona obtenerPersonaByIdPersona(Integer idPersona);
+    public List<UcsawsPersona> obtenerPersonaByEventoNoCandidatas(Integer idEvento);
 	
 	/*public UcsawsEvento obtenerEventoByFecha(Date fecha);
 	

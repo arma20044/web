@@ -1,17 +1,14 @@
 package py.edu.ucsa.voto.dao;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
 
-import org.json.simple.JSONArray;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import py.edu.ucsa.voto.entity.UcsawsEvento;
 import py.edu.ucsa.voto.entity.UcsawsTipoLista;
-import py.edu.ucsa.voto.entity.UcsawsUsers;
 
 @Repository("tipoListasDAO")
 @Transactional(readOnly = true)
@@ -58,10 +55,7 @@ public class TipoListasDAO extends AbstractSpringDAO implements
 		 */
 	}
 
-	public UcsawsTipoLista obtenerTipoListaById(Integer idTipoLista) {
-		return null;
 
-	}
 
 	public UcsawsTipoLista obtenerTipoListaByCodigo(String codigo, Integer idEvento) {
 		List<UcsawsTipoLista> resultado;
@@ -78,6 +72,42 @@ public class TipoListasDAO extends AbstractSpringDAO implements
 			return (UcsawsTipoLista) resultado.get(0);
 		}
 		return (UcsawsTipoLista) resultado.get(0);
+	}
+	
+	public UcsawsTipoLista obtenerTipoListaById(Integer idETipoLista){
+		List<UcsawsTipoLista> resultado;
+		UcsawsTipoLista e = new UcsawsTipoLista();
+		String hql;
+		hql = "select obj from " + claseEntidad + " obj where  id =:idETipoLista";
+		Query query = em.createQuery(hql);
+		query.setParameter("idETipoLista", idETipoLista);
+		resultado = query.getResultList();
+		if (resultado.size()==0){
+			return e;
+		}
+		else
+			if(resultado.size()==1){
+				return (UcsawsTipoLista) resultado.get(0);
+			}
+		return (UcsawsTipoLista) resultado.get(0);
+	}
+	
+	public List<UcsawsTipoLista> obtenerTipoListaByIdEvento(Integer idEvento){
+		List<UcsawsTipoLista> resultado;
+		UcsawsTipoLista e = new UcsawsTipoLista();
+		String hql;
+		hql = "select obj from " + claseEntidad + " obj where  idEvento.idEvento =:idEvento";
+		Query query = em.createQuery(hql);
+		query.setParameter("idEvento", idEvento);
+		resultado = query.getResultList();
+		if (resultado.size()==0){
+			return new ArrayList<UcsawsTipoLista>();
+		}
+		else
+		 
+		    return resultado;
+			 
+		 
 	}
 
 
