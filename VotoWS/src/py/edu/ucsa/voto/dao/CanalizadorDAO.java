@@ -3370,16 +3370,84 @@ public class CanalizadorDAO {
 
     }
     
+   // ELIMINAR USER
     else if (request.getTipo_query_generico() == 109) {
-      
+      // json string to java object;
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      UcsawsUsers user = mapper.readValue(jsonInString, UcsawsUsers.class);
+
+      try {
+        usersDAO.delete(user);
+      } catch (Exception e) {
+        System.out.println(e);
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } finally {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("SI");
+      }
     }
     
+    //user by id
     else if (request.getTipo_query_generico() == 110) {
-      
+      UcsawsUsers user = new UcsawsUsers();
+      user = usersDAO.obtenerUserByID(Integer.parseInt(request.getQuery_generico()));
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(user.getIdUser() == null)) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(user);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(user);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
     }
     
+    //guardar USER
     else if (request.getTipo_query_generico() == 111) {
-      
+      // json string to java object;
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      UcsawsUsers user = mapper.readValue(jsonInString, UcsawsUsers.class);
+
+      // genero.setUsuarioIns("sistema");
+      // tipoEvento.setFchIns(new Date());
+      // departamento.setIdDepartamento(null);
+
+      UcsawsUsers comprobar = (UcsawsUsers) usersDAO.save(user);
+      if (comprobar.getIdUser() == null) {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } else {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("SI");
+      }
     }
     
     // ROLES BY ID EVENTO
@@ -3505,6 +3573,54 @@ public class CanalizadorDAO {
       } finally {
         response.setCodigo(2244);
         response.setQuery_generico_response("SI");
+      }
+
+    }
+    
+    // consultar PERSONA by evento
+    else if (request.getTipo_query_generico() == 116) {
+
+      // json string to List<String>;
+
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+     // String id = mapper.readValue(jsonInString, String.class);
+
+      List<UcsawsPersona> persona = new ArrayList<UcsawsPersona>();
+      persona = personaDAO.obtenerPersonaByEvento(Integer.parseInt(jsonInString));
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(persona.isEmpty())) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(persona);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(persona);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
       }
 
     }
