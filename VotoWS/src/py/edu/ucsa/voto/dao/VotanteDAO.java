@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import py.edu.ucsa.voto.entity.UcsawsEvento;
+import py.edu.ucsa.voto.entity.UcsawsNacionalidad;
 import py.edu.ucsa.voto.entity.UcsawsVotante;
 
 
@@ -109,5 +110,25 @@ public class VotanteDAO extends AbstractSpringDAO implements VotanteDAOInterface
 			}
 		return (UcsawsVotante) resultado.get(0);
 	}
+	
+	
+	  public List<UcsawsVotante> obtenerVotantesByEvento(Integer idEvento) {
+
+	    List<UcsawsVotante> resultado;
+	    UcsawsVotante e = new UcsawsVotante();
+	    String hql;
+	    hql = "select obj from " + claseEntidad + " obj where  idEvento.idEvento =:idEvento";
+	    Query query = em.createQuery(hql);
+	    query.setParameter("idEvento", idEvento);
+	    resultado = query.getResultList();
+	    if (resultado.size() == 0) {
+	      return new ArrayList<UcsawsVotante>();
+	    } else if (resultado.size() == 1) {
+	      return resultado;
+	    }
+	    return resultado;
+
+
+	  }
 
 }

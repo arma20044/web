@@ -99,7 +99,7 @@ public class CanalizadorDAO {
 
   @Autowired
   CandidatosDAOInterface candidatosDAO;
-  
+
   @Autowired
   RolesDAOInterface rolesDAO;
 
@@ -3210,10 +3210,10 @@ public class CanalizadorDAO {
       }
 
     }
-    
+
     // ELIMINAR DELETE CANDIDATO
     else if (request.getTipo_query_generico() == 105) {
-      
+
       // json string to java object;
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
@@ -3231,11 +3231,12 @@ public class CanalizadorDAO {
       }
 
     }
-    
+
     // CANDIDATO BY ID
     else if (request.getTipo_query_generico() == 106) {
       UcsawsCandidatos candidato = new UcsawsCandidatos();
-      candidato = candidatosDAO.obtenerCandidatosByID(Integer.parseInt(request.getQuery_generico()));
+      candidato =
+          candidatosDAO.obtenerCandidatosByID(Integer.parseInt(request.getQuery_generico()));
 
       // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
 
@@ -3272,9 +3273,9 @@ public class CanalizadorDAO {
       }
 
     }
-    
+
     // consultar PERSONAS no candidatas by evento
-    else if (request.getTipo_query_generico() ==  107) {
+    else if (request.getTipo_query_generico() == 107) {
 
       // json string to List<String>;
       /*
@@ -3284,7 +3285,9 @@ public class CanalizadorDAO {
        */
 
       List<UcsawsPersona> persona = new ArrayList<UcsawsPersona>();
-      persona = personaDAO.obtenerPersonaByEventoNoCandidatas(Integer.parseInt(request.getQuery_generico()));
+      persona =
+          personaDAO.obtenerPersonaByEventoNoCandidatas(Integer.parseInt(request
+              .getQuery_generico()));
 
       // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
 
@@ -3321,7 +3324,7 @@ public class CanalizadorDAO {
       }
 
     }
-    
+
     // consultar USER by evento
     else if (request.getTipo_query_generico() == 108) {
 
@@ -3329,7 +3332,7 @@ public class CanalizadorDAO {
 
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
-     // String id = mapper.readValue(jsonInString, String.class);
+      // String id = mapper.readValue(jsonInString, String.class);
 
       List<UcsawsUsers> user = new ArrayList<UcsawsUsers>();
       user = usersDAO.obtenerUserByEvento(Integer.parseInt(jsonInString));
@@ -3369,8 +3372,8 @@ public class CanalizadorDAO {
       }
 
     }
-    
-   // ELIMINAR USER
+
+    // ELIMINAR USER
     else if (request.getTipo_query_generico() == 109) {
       // json string to java object;
       ObjectMapper mapper = new ObjectMapper();
@@ -3388,8 +3391,8 @@ public class CanalizadorDAO {
         response.setQuery_generico_response("SI");
       }
     }
-    
-    //user by id
+
+    // user by id
     else if (request.getTipo_query_generico() == 110) {
       UcsawsUsers user = new UcsawsUsers();
       user = usersDAO.obtenerUserByID(Integer.parseInt(request.getQuery_generico()));
@@ -3428,8 +3431,8 @@ public class CanalizadorDAO {
         response.setQuery_generico_response(jsonStr);
       }
     }
-    
-    //guardar USER
+
+    // guardar USER
     else if (request.getTipo_query_generico() == 111) {
       // json string to java object;
       ObjectMapper mapper = new ObjectMapper();
@@ -3449,7 +3452,7 @@ public class CanalizadorDAO {
         response.setQuery_generico_response("SI");
       }
     }
-    
+
     // ROLES BY ID EVENTO
     else if (request.getTipo_query_generico() == 112) {
       List<UcsawsRoles> roles = new ArrayList<UcsawsRoles>();
@@ -3490,7 +3493,7 @@ public class CanalizadorDAO {
       }
 
     }
-    
+
     // ROL BY ID
     else if (request.getTipo_query_generico() == 113) {
       UcsawsRoles rol = new UcsawsRoles();
@@ -3532,7 +3535,7 @@ public class CanalizadorDAO {
 
     }
 
-    
+
     // guardar ROL
     else if (request.getTipo_query_generico() == 114) {
 
@@ -3555,10 +3558,10 @@ public class CanalizadorDAO {
       }
 
     }
-    
+
     // ELIMINAR DELETE ROL
     else if (request.getTipo_query_generico() == 115) {
-      
+
       // json string to java object;
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
@@ -3576,7 +3579,7 @@ public class CanalizadorDAO {
       }
 
     }
-    
+
     // consultar PERSONA by evento
     else if (request.getTipo_query_generico() == 116) {
 
@@ -3584,7 +3587,7 @@ public class CanalizadorDAO {
 
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
-     // String id = mapper.readValue(jsonInString, String.class);
+      // String id = mapper.readValue(jsonInString, String.class);
 
       List<UcsawsPersona> persona = new ArrayList<UcsawsPersona>();
       persona = personaDAO.obtenerPersonaByEvento(Integer.parseInt(jsonInString));
@@ -3624,7 +3627,263 @@ public class CanalizadorDAO {
       }
 
     }
+
+    // consultar todos los USER
+    else if (request.getTipo_query_generico() == 117) {
+
+      // json string to List<String>;
+
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      // String id = mapper.readValue(jsonInString, String.class);
+
+      List<UcsawsUsers> user = new ArrayList<UcsawsUsers>();
+      user = usersDAO.getList();
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(user.isEmpty())) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(user);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(user);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
+
+    // consultar VOTANTE by evento
+    else if (request.getTipo_query_generico() == 118) {
+
+      // json string to List<String>;
+
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      // String id = mapper.readValue(jsonInString, String.class);
+
+      List<UcsawsVotante> votante = new ArrayList<UcsawsVotante>();
+      votante = votanteDAO.obtenerVotantesByEvento(Integer.parseInt(jsonInString));
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(votante.isEmpty())) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(votante);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(votante);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
+
+
+    // guardar VOTANTE
+    else if (request.getTipo_query_generico() == 119) {
+
+      // json string to java object;
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      UcsawsVotante votante = mapper.readValue(jsonInString, UcsawsVotante.class);
+
+      // genero.setUsuarioIns("sistema");
+      // tipoEvento.setFchIns(new Date());
+      // departamento.setIdDepartamento(null);
+
+      UcsawsVotante comprobar = (UcsawsVotante) votanteDAO.save(votante);
+      if (comprobar.getIdVotante() == null) {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } else {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("SI");
+      }
+
+    }
+
+    // ELIMINAR DELETE VOTANTE
+    else if (request.getTipo_query_generico() == 120) {
+
+      // json string to java object;
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      UcsawsVotante votante = mapper.readValue(jsonInString, UcsawsVotante.class);
+
+      try {
+        votanteDAO.delete(votante);
+      } catch (Exception e) {
+        System.out.println(e);
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } finally {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("SI");
+      }
+
+    }
+
+    // VOTANTE BY ID
+    else if (request.getTipo_query_generico() == 121) {
+      UcsawsVotante votante = new UcsawsVotante();
+      votante = votanteDAO.obtenerVotanteById(Integer.parseInt(request.getQuery_generico()));
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(votante.getIdVotante() == null)) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(votante);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(votante);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
+
+    // MESA BY ID
+    else if (request.getTipo_query_generico() == 122) {
+      UcsawsMesa mesa = new UcsawsMesa();
+      mesa = mesaDAO.obtenerMesaById((Integer.parseInt(request.getQuery_generico())));
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(mesa.getIdMesa() == null)) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(mesa);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(mesa);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
     
+    
+    // actualizar  modificar update VOTANTE
+    else if (request.getTipo_query_generico() == 123) {
+      // json string to java object;
+
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+
+      System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
+
+      UcsawsVotante votante = mapper.readValue(jsonInString, UcsawsVotante.class);
+
+      Object comprobar = votanteDAO.update(votante);
+      if (comprobar == null) {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(votante);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+    }
+
     return response;
 
   }

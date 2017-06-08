@@ -16,4 +16,5 @@ public interface VotanteDAOInterface extends DAOInterface{
 	public UcsawsVotante obtenerVotante(Integer idVotante);
 	public UcsawsVotante obtenerVotanteSinSufragar(String idVotante);
 	public UcsawsVotante obtenerVotanteById(Integer idVotante);
+	 public List<UcsawsVotante> obtenerVotantesByEvento(Integer idEvento);
 }
