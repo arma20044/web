@@ -176,7 +176,7 @@ public class CandidatosDAO extends AbstractSpringDAO implements CandidatosDAOInt
 	UcsawsCandidatos e = new UcsawsCandidatos();
 	String hql;
 	hql = "select obj from " + claseEntidad
-		+ " obj where  idEvento.idEvento =:idEvento";
+		+ " obj where  idEvento.idEvento =:idEvento order by obj.idLista , obj.descripcion ";
 	Query query = em.createQuery(hql);
 	query.setParameter("idEvento", idEvento);
 	resultado = query.getResultList();
@@ -189,6 +189,9 @@ public class CandidatosDAO extends AbstractSpringDAO implements CandidatosDAOInt
 	 
 	
     }
+    
+    
+
     
  /*   public UcsawsNacionalidad obtenerNacionalidadByCodigoYNombre(String codigo, String nombre, Integer idEvento){
 	

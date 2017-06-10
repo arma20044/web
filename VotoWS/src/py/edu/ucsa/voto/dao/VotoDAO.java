@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import py.edu.ucsa.voto.entity.UcsawsCandidatos;
 import py.edu.ucsa.voto.entity.UcsawsVotos;
 
 
@@ -66,4 +67,46 @@ public class VotoDAO extends AbstractSpringDAO implements VotoDAOInterface {
 		
 	}*/
 
+    /*public List<Object> obtenerCandidatosConVotoByEvento(Integer idEvento, Integer tipoLista){
+      idEvento = 1;
+      tipoLista = 23;
+    List<Object> resultado;
+    UcsawsVotos e = new UcsawsVotos();
+    String hql;
+    hql = "select voto.idLista.nombreLista, count(voto) from UcsawsVotos voto "
+        + " where voto.idLista.idEvento.idEvento =:idEvento and voto.idLista.ucsawsTipoLista.idTipoLista =:tipoLista"
+        + " group by voto.idLista.nombreLista order by 2";
+    Query query = em.createQuery(hql);
+    query.setParameter("idEvento", idEvento);
+    query.setParameter("tipoLista", tipoLista);
+    resultado = query.getResultList();
+    if (resultado.size() == 0) {
+        return new ArrayList<Object>();
+    } else if (resultado.size() == 1) {
+        return  resultado ;
+    }
+    return resultado ;
+     
+    
+    }*/
+	
+    public List<UcsawsVotos> obtenerVotosByEvento(Integer idEvento, Integer tipoLista){
+      
+    List<UcsawsVotos> resultado;
+    UcsawsVotos e = new UcsawsVotos();
+    String hql;
+    hql = "select obj from " + claseEntidad
+        + " obj where  obj.idLista.idEvento.idEvento =:idEvento";
+    Query query = em.createQuery(hql);
+    query.setParameter("idEvento", idEvento);
+    resultado = query.getResultList();
+    if (resultado.size() == 0) {
+        return new ArrayList<UcsawsVotos>();
+    } else if (resultado.size() == 1) {
+        return  resultado ;
+    }
+    return resultado ;
+     
+    
+    }
 }
