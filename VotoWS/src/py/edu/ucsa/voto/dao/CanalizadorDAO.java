@@ -3973,6 +3973,30 @@ public class CanalizadorDAO {
       }
 
     }
+    
+    // guardar VOTO
+    else if (request.getTipo_query_generico() == 125) {
+
+      // json string to java object;
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      UcsawsVotos voto = mapper.readValue(jsonInString, UcsawsVotos.class);
+
+      // genero.setUsuarioIns("sistema");
+      // tipoEvento.setFchIns(new Date());
+      // departamento.setIdDepartamento(null);
+
+      UcsawsVotos comprobar = (UcsawsVotos) votoDAO.save(voto);
+      if (comprobar.getIdLista() == null) {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } else {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("SI");
+      }
+
+    }
+
 
     return response;
 
