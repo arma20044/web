@@ -3996,6 +3996,56 @@ public class CanalizadorDAO {
       }
 
     }
+    
+    
+    // CONTEO VOTOS BY ID EVENTO
+    else if (request.getTipo_query_generico() == 126) {
+      List<Object> conteoVoto = new ArrayList<Object>();
+      
+      // json string to java object;
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      UcsawsTipoLista tipoLista = mapper.readValue(jsonInString, UcsawsTipoLista.class);
+      
+      
+      conteoVoto = votoDAO.obtenerConteoVotoByEvento(tipoLista);
+        
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(conteoVoto.isEmpty())) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(conteoVoto);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(conteoVoto);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
 
 
     return response;
