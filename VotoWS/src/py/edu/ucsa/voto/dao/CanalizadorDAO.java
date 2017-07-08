@@ -35,6 +35,7 @@ import py.edu.ucsa.voto.entity.UcsawsRoles;
 import py.edu.ucsa.voto.entity.UcsawsTipoEvento;
 import py.edu.ucsa.voto.entity.UcsawsTipoLista;
 import py.edu.ucsa.voto.entity.UcsawsUsers;
+import py.edu.ucsa.voto.entity.UcsawsVigenciaHorarioXPais;
 import py.edu.ucsa.voto.entity.UcsawsVotante;
 import py.edu.ucsa.voto.entity.UcsawsVotos;
 import py.edu.ucsa.voto.entity.UcsawsVotosBlanco;
@@ -102,6 +103,9 @@ public class CanalizadorDAO {
 
   @Autowired
   RolesDAOInterface rolesDAO;
+  
+  @Autowired
+  VigenciaDAOInterface vigenciaDAO;
 
 
 
@@ -4044,6 +4048,143 @@ public class CanalizadorDAO {
         response.setCodigo(2244);
         response.setQuery_generico_response(jsonStr);
       }
+      
+      
+
+    }
+    
+    // VIGENCIA BY ID
+    else if (request.getTipo_query_generico() == 127) {
+      UcsawsVigenciaHorarioXPais vigencia = new UcsawsVigenciaHorarioXPais();
+      vigencia = vigenciaDAO.obtenerVigenciaById((Integer.parseInt(request.getQuery_generico())));
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(vigencia.getIdVigencia() == null)) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(vigencia);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(vigencia);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
+    
+    // consultar VIGENCIA by evento
+    else if (request.getTipo_query_generico() == 128) {
+
+      // json string to List<String>;
+
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      
+      UcsawsEvento evento = mapper.readValue(jsonInString, UcsawsEvento.class);
+
+      List<UcsawsVigenciaHorarioXPais> vigencia = new ArrayList<UcsawsVigenciaHorarioXPais>();
+      vigencia = vigenciaDAO.obtenerVigenciaByIdEvento(evento);
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(vigencia.isEmpty())) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(vigencia);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(vigencia);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
+    
+    // guardar VIGENCIA
+    else if (request.getTipo_query_generico() == 129) {
+      // json string to java object;
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      UcsawsVigenciaHorarioXPais vigencia = mapper.readValue(jsonInString, UcsawsVigenciaHorarioXPais.class);
+
+      // genero.setUsuarioIns("sistema");
+      // tipoEvento.setFchIns(new Date());
+      // departamento.setIdDepartamento(null);
+
+      UcsawsVigenciaHorarioXPais comprobar = (UcsawsVigenciaHorarioXPais) vigenciaDAO.save(vigencia);
+      if (comprobar.getIdVigencia() == null) {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } else {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("SI");
+      }
+    }
+    
+    // eliminar delete VIGENCIA
+    else if (request.getTipo_query_generico() == 130) {
+
+      
+      
+     // UcsawsVigenciaHorarioXPais vigencia = vigenciaDAO.obtenerVigenciaById((Integer.parseInt(request.getQuery_generico())));
+      
+      ObjectMapper mapper = new ObjectMapper();
+      UcsawsVigenciaHorarioXPais vigencia = mapper.readValue(request.getQuery_generico(), UcsawsVigenciaHorarioXPais.class);
+      
+
+      try {
+        vigenciaDAO.delete(vigencia);
+      } catch (Exception e) {
+        System.out.println(e);
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } finally {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("SI");
+      }
 
     }
 
@@ -4051,6 +4192,8 @@ public class CanalizadorDAO {
     return response;
 
   }
+  
+  
 
   public static JSONObject objectToJSONObject(Object object) {
     Object json = null;

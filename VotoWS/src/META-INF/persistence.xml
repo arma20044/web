@@ -41,6 +41,8 @@
 		
 		<class>py.edu.ucsa.voto.entity.UcsawsCandidatos</class>
 		
+		<class>py.edu.ucsa.voto.entity.UcsawsVigenciaHorarioXPais</class>
+		
 		
 		<exclude-unlisted-classes />
 		<properties>
