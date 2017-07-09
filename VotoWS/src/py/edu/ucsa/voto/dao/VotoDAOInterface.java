@@ -1,11 +1,9 @@
 package py.edu.ucsa.voto.dao;
 
-import java.util.Date;
 import java.util.List;
 
-import py.edu.ucsa.voto.entity.UcsawsCandidatos;
-import py.edu.ucsa.voto.entity.UcsawsEvento;
 import py.edu.ucsa.voto.entity.UcsawsTipoLista;
+import py.edu.ucsa.voto.entity.UcsawsVotante;
 import py.edu.ucsa.voto.entity.UcsawsVotos;
 
 
@@ -19,5 +17,7 @@ public interface VotoDAOInterface extends DAOInterface{
 	//public List<Object> obtenerCandidatosConVotoByEvento(Integer idEvento, Integer tipoLista);
 	 public List<UcsawsVotos> obtenerVotosByEvento(Integer idEvento, Integer tipoLista);
 	 public List<Object> obtenerConteoVotoByEvento(  UcsawsTipoLista tipoLista);
+	 
+	 public boolean VotarYActualizarVotante(UcsawsVotos votoPresidente, UcsawsVotos votoSenador, UcsawsVotos votoParlasur, UcsawsVotante votante);
 
 }

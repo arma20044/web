@@ -6,11 +6,13 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import py.edu.ucsa.voto.entity.UcsawsCandidatos;
 import py.edu.ucsa.voto.entity.UcsawsTipoLista;
+import py.edu.ucsa.voto.entity.UcsawsVotante;
 import py.edu.ucsa.voto.entity.UcsawsVotos;
 
 
@@ -18,6 +20,9 @@ import py.edu.ucsa.voto.entity.UcsawsVotos;
 @Repository("votoDAO")
 @Transactional(readOnly = true)
 public class VotoDAO extends AbstractSpringDAO implements VotoDAOInterface {
+  
+  @Autowired
+  VotanteDAO votanteDAO = new VotanteDAO();
 
   public VotoDAO() {
     claseEntidad = "UcsawsVotos";
@@ -116,5 +121,27 @@ public class VotoDAO extends AbstractSpringDAO implements VotoDAOInterface {
     return resultado;
 
 
+  }
+
+  @Transactional
+  public boolean VotarYActualizarVotante(UcsawsVotos votoPresidente, UcsawsVotos votoSenador,
+      UcsawsVotos votoParlasur, UcsawsVotante votante) {
+    boolean result = false;
+    
+    
+    try{
+    saveOrUpdate(votoPresidente);
+    saveOrUpdate(votoSenador);
+    saveOrUpdate(votoParlasur);
+    
+     
+    votanteDAO.update(votante);
+    }
+    catch(Exception e){
+      System.out.println(e);
+      result = false;
+    }
+    
+    return result;
   }
 }

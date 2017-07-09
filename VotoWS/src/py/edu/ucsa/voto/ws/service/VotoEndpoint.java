@@ -412,9 +412,22 @@ public class VotoEndpoint implements MarshallingVotoService {
 
 		} catch (Exception e) {
 			logger.error(e.getStackTrace(), e);
-
+			System.out.println(e.getCause().toString() );
+			System.out.println(e.getCause().getLocalizedMessage());
 			response.setCodigo(_CODIGO_ERROR_DESCONOCIDO);
-			response.setQuery_generico_response("ERRORRRRRRR");
+			//response.setQuery_generico_response("ERRORRRRRRR");
+			
+			String jsonStr = "";
+			ObjectMapper mapperObj = new ObjectMapper();
+			try{
+			//jsonStr = mapperObj.writeValueAsString(e.getMessage());
+			  jsonStr = mapperObj.writeValueAsString(e.getCause().toString());
+			}
+			catch(Exception ex){
+			  System.out.println(ex);
+			}
+			
+			response.setQuery_generico_response(jsonStr);
 			response.setQueryGenericoRequest(request);
 		}
 		

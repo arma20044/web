@@ -12,6 +12,7 @@ import oracle.jdbc.driver.DatabaseError;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.type.TypeReference;
 import org.json.JSONException;
 import org.json.JSONTokener;
 import org.json.simple.JSONObject;
@@ -4186,6 +4187,48 @@ public class CanalizadorDAO {
         response.setQuery_generico_response("SI");
       }
 
+    }
+    
+    //VOTACION NUEVO PROCESO
+    else if (request.getTipo_query_generico() == 131) {
+      
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonInString = request.getQuery_generico();
+      Object[] lista = mapper.readValue(jsonInString, new TypeReference<Object[]>(){});
+      
+     
+      /*Object pr = lista[0];
+      Object s =  lista[1];
+      Object pa = lista[2];
+      Object v = lista[3];*/
+      
+      String jsonStr = mapper.writeValueAsString(lista[0]);
+      UcsawsVotos pr = mapper.readValue(jsonStr, UcsawsVotos.class);
+      
+      String jsonStr2 = mapper.writeValueAsString(lista[1]);
+      UcsawsVotos s = mapper.readValue(jsonStr2, UcsawsVotos.class);
+      
+      String jsonStr3 = mapper.writeValueAsString(lista[2]);
+      UcsawsVotos pa = mapper.readValue(jsonStr3, UcsawsVotos.class);
+      
+      String jsonStr4 = mapper.writeValueAsString(lista[3]);
+      UcsawsVotante v = mapper.readValue(jsonStr4, UcsawsVotante.class);
+      
+      
+      try {
+      votoDAO.VotarYActualizarVotante(pr, s , pa,v);
+      } catch (Exception e) {
+        System.out.println(e);
+        
+        ObjectMapper mapperObj = new ObjectMapper();
+        jsonStr = mapperObj.writeValueAsString(e);
+        
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } finally {
+        response.setCodigo(2244);
+        response.setQuery_generico_response("SI");
+      }
     }
 
 
