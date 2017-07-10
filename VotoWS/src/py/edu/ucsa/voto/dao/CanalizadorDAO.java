@@ -4212,11 +4212,21 @@ public class CanalizadorDAO {
       UcsawsVotos pa = mapper.readValue(jsonStr3, UcsawsVotos.class);
       
       String jsonStr4 = mapper.writeValueAsString(lista[3]);
-      UcsawsVotante v = mapper.readValue(jsonStr4, UcsawsVotante.class);
+      UcsawsVotosBlanco prb = mapper.readValue(jsonStr4, UcsawsVotosBlanco.class);
+      
+      String jsonStr5 = mapper.writeValueAsString(lista[4]);
+      UcsawsVotosBlanco sb = mapper.readValue(jsonStr5, UcsawsVotosBlanco.class);
+      
+      String jsonStr6 = mapper.writeValueAsString(lista[5]);
+      UcsawsVotosBlanco pab = mapper.readValue(jsonStr6, UcsawsVotosBlanco.class);
+      
+      
+      String jsonStr7 = mapper.writeValueAsString(lista[6]);
+      UcsawsVotante v = mapper.readValue(jsonStr7, UcsawsVotante.class);
       
       
       try {
-      votoDAO.VotarYActualizarVotante(pr, s , pa,v);
+      votoDAO.VotarYActualizarVotante(pr, s , pa,prb, sb, pab,v);
       } catch (Exception e) {
         System.out.println(e);
         

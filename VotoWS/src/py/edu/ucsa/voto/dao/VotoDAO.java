@@ -14,6 +14,7 @@ import py.edu.ucsa.voto.entity.UcsawsCandidatos;
 import py.edu.ucsa.voto.entity.UcsawsTipoLista;
 import py.edu.ucsa.voto.entity.UcsawsVotante;
 import py.edu.ucsa.voto.entity.UcsawsVotos;
+import py.edu.ucsa.voto.entity.UcsawsVotosBlanco;
 
 
 
@@ -23,6 +24,9 @@ public class VotoDAO extends AbstractSpringDAO implements VotoDAOInterface {
   
   @Autowired
   VotanteDAO votanteDAO = new VotanteDAO();
+  
+  @Autowired
+  VotoBlancoDAO votoBlancoDAO = new VotoBlancoDAO();
 
   public VotoDAO() {
     claseEntidad = "UcsawsVotos";
@@ -124,16 +128,38 @@ public class VotoDAO extends AbstractSpringDAO implements VotoDAOInterface {
   }
 
   @Transactional
-  public boolean VotarYActualizarVotante(UcsawsVotos votoPresidente, UcsawsVotos votoSenador,
-      UcsawsVotos votoParlasur, UcsawsVotante votante) {
+  public boolean VotarYActualizarVotante(UcsawsVotos votoPresidente, UcsawsVotos votoSenador, UcsawsVotos votoParlasur, 
+      UcsawsVotosBlanco votoPresidenteBlanco , UcsawsVotosBlanco votoSenadorBlanco, UcsawsVotosBlanco votoParlasurBlanco,UcsawsVotante votante) {
     boolean result = false;
     
     
     try{
+    if (votoPresidente != null)
+    {  
     saveOrUpdate(votoPresidente);
-    saveOrUpdate(votoSenador);
-    saveOrUpdate(votoParlasur);
+    }
+    else
+    {
+      votoBlancoDAO.save(votoPresidenteBlanco);
+    }
     
+    if(votoSenador!=null)
+    {
+    saveOrUpdate(votoSenador);
+    }
+    else
+    {
+      votoBlancoDAO.save(votoSenadorBlanco);
+    }
+    
+    if(votoParlasur!=null)
+    {
+    saveOrUpdate(votoParlasur);
+    }
+    else
+    {
+      votoBlancoDAO.save(votoParlasurBlanco);
+    }
      
     votanteDAO.update(votante);
     }
