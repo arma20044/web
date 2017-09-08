@@ -1,11 +1,14 @@
 package py.edu.ucsa.voto.dao;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.sql.DataSource;
 
 import oracle.jdbc.driver.DatabaseError;
 
@@ -17,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONTokener;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,6 +51,9 @@ import py.edu.ucsa.voto.ws.schema.beans.QueryGenericoResponse;
 @Repository("canalizadorDAO")
 @Transactional(readOnly = true)
 public class CanalizadorDAO {
+
+  @Autowired
+  private ApplicationContext appContext;
 
   @Autowired
   EventoDAOInterface eventoDAO;
@@ -104,7 +111,7 @@ public class CanalizadorDAO {
 
   @Autowired
   RolesDAOInterface rolesDAO;
-  
+
   @Autowired
   VigenciaDAOInterface vigenciaDAO;
 
@@ -203,17 +210,18 @@ public class CanalizadorDAO {
         response.setQuery_generico_response("SI");
       }
 
-      
-      //VOTANTE BY ID PERSONA
+
+      // VOTANTE BY ID PERSONA
     } else if (request.getTipo_query_generico() == 4) {
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
       List<String> parametro = mapper.readValue(jsonInString, List.class);
       String p = parametro.get(0);
       String e = parametro.get(1);
-      
+
       UcsawsVotante votante = new UcsawsVotante();
-      votante = votanteDAO.obtenerVotanteByIdPersonaYEvento(Integer.parseInt(p), Integer.parseInt(e));
+      votante =
+          votanteDAO.obtenerVotanteByIdPersonaYEvento(Integer.parseInt(p), Integer.parseInt(e));
 
       // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
 
@@ -3898,9 +3906,9 @@ public class CanalizadorDAO {
       }
 
     }
-    
-    
-    // actualizar  modificar update VOTANTE
+
+
+    // actualizar modificar update VOTANTE
     else if (request.getTipo_query_generico() == 123) {
       // json string to java object;
 
@@ -3931,15 +3939,15 @@ public class CanalizadorDAO {
         response.setQuery_generico_response(jsonStr);
       }
     }
-    
+
     // VOTOS CONTEO BY ID EVENTO
     else if (request.getTipo_query_generico() == 124) {
       ObjectMapper mapper = new ObjectMapper();
-      
-      List<String> parametro = mapper.readValue( request.getQuery_generico(), List.class);
+
+      List<String> parametro = mapper.readValue(request.getQuery_generico(), List.class);
       String idEvento = parametro.get(0);
       String tipoLista = parametro.get(1);
-      
+
       List<UcsawsVotos> lista = new ArrayList<UcsawsVotos>();
       lista = votoDAO.obtenerVotosByEvento(Integer.parseInt(idEvento), Integer.parseInt(tipoLista));
 
@@ -3978,7 +3986,7 @@ public class CanalizadorDAO {
       }
 
     }
-    
+
     // guardar VOTO
     else if (request.getTipo_query_generico() == 125) {
 
@@ -4001,20 +4009,20 @@ public class CanalizadorDAO {
       }
 
     }
-    
-    
+
+
     // CONTEO VOTOS BY ID EVENTO
     else if (request.getTipo_query_generico() == 126) {
       List<Object> conteoVoto = new ArrayList<Object>();
-      
+
       // json string to java object;
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
       UcsawsTipoLista tipoLista = mapper.readValue(jsonInString, UcsawsTipoLista.class);
-      
-      
+
+
       conteoVoto = votoDAO.obtenerConteoVotoByEvento(tipoLista);
-        
+
 
       // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
 
@@ -4049,11 +4057,11 @@ public class CanalizadorDAO {
         response.setCodigo(2244);
         response.setQuery_generico_response(jsonStr);
       }
-      
-      
+
+
 
     }
-    
+
     // VIGENCIA BY ID
     else if (request.getTipo_query_generico() == 127) {
       UcsawsVigenciaHorarioXPais vigencia = new UcsawsVigenciaHorarioXPais();
@@ -4094,7 +4102,7 @@ public class CanalizadorDAO {
       }
 
     }
-    
+
     // consultar VIGENCIA by evento
     else if (request.getTipo_query_generico() == 128) {
 
@@ -4102,7 +4110,7 @@ public class CanalizadorDAO {
 
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
-      
+
       UcsawsEvento evento = mapper.readValue(jsonInString, UcsawsEvento.class);
 
       List<UcsawsVigenciaHorarioXPais> vigencia = new ArrayList<UcsawsVigenciaHorarioXPais>();
@@ -4143,19 +4151,21 @@ public class CanalizadorDAO {
       }
 
     }
-    
+
     // guardar VIGENCIA
     else if (request.getTipo_query_generico() == 129) {
       // json string to java object;
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
-      UcsawsVigenciaHorarioXPais vigencia = mapper.readValue(jsonInString, UcsawsVigenciaHorarioXPais.class);
+      UcsawsVigenciaHorarioXPais vigencia =
+          mapper.readValue(jsonInString, UcsawsVigenciaHorarioXPais.class);
 
       // genero.setUsuarioIns("sistema");
       // tipoEvento.setFchIns(new Date());
       // departamento.setIdDepartamento(null);
 
-      UcsawsVigenciaHorarioXPais comprobar = (UcsawsVigenciaHorarioXPais) vigenciaDAO.save(vigencia);
+      UcsawsVigenciaHorarioXPais comprobar =
+          (UcsawsVigenciaHorarioXPais) vigenciaDAO.save(vigencia);
       if (comprobar.getIdVigencia() == null) {
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
@@ -4164,17 +4174,19 @@ public class CanalizadorDAO {
         response.setQuery_generico_response("SI");
       }
     }
-    
+
     // eliminar delete VIGENCIA
     else if (request.getTipo_query_generico() == 130) {
 
-      
-      
-     // UcsawsVigenciaHorarioXPais vigencia = vigenciaDAO.obtenerVigenciaById((Integer.parseInt(request.getQuery_generico())));
-      
+
+
+      // UcsawsVigenciaHorarioXPais vigencia =
+      // vigenciaDAO.obtenerVigenciaById((Integer.parseInt(request.getQuery_generico())));
+
       ObjectMapper mapper = new ObjectMapper();
-      UcsawsVigenciaHorarioXPais vigencia = mapper.readValue(request.getQuery_generico(), UcsawsVigenciaHorarioXPais.class);
-      
+      UcsawsVigenciaHorarioXPais vigencia =
+          mapper.readValue(request.getQuery_generico(), UcsawsVigenciaHorarioXPais.class);
+
 
       try {
         vigenciaDAO.delete(vigencia);
@@ -4188,51 +4200,50 @@ public class CanalizadorDAO {
       }
 
     }
-    
-    //VOTACION NUEVO PROCESO
+
+    // VOTACION NUEVO PROCESO
     else if (request.getTipo_query_generico() == 131) {
-      
+
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
-      Object[] lista = mapper.readValue(jsonInString, new TypeReference<Object[]>(){});
-      
-     
-      /*Object pr = lista[0];
-      Object s =  lista[1];
-      Object pa = lista[2];
-      Object v = lista[3];*/
-      
+      Object[] lista = mapper.readValue(jsonInString, new TypeReference<Object[]>() {});
+
+
+      /*
+       * Object pr = lista[0]; Object s = lista[1]; Object pa = lista[2]; Object v = lista[3];
+       */
+
       String jsonStr = mapper.writeValueAsString(lista[0]);
       UcsawsVotos pr = mapper.readValue(jsonStr, UcsawsVotos.class);
-      
+
       String jsonStr2 = mapper.writeValueAsString(lista[1]);
       UcsawsVotos s = mapper.readValue(jsonStr2, UcsawsVotos.class);
-      
+
       String jsonStr3 = mapper.writeValueAsString(lista[2]);
       UcsawsVotos pa = mapper.readValue(jsonStr3, UcsawsVotos.class);
-      
+
       String jsonStr4 = mapper.writeValueAsString(lista[3]);
       UcsawsVotosBlanco prb = mapper.readValue(jsonStr4, UcsawsVotosBlanco.class);
-      
+
       String jsonStr5 = mapper.writeValueAsString(lista[4]);
       UcsawsVotosBlanco sb = mapper.readValue(jsonStr5, UcsawsVotosBlanco.class);
-      
+
       String jsonStr6 = mapper.writeValueAsString(lista[5]);
       UcsawsVotosBlanco pab = mapper.readValue(jsonStr6, UcsawsVotosBlanco.class);
-      
-      
+
+
       String jsonStr7 = mapper.writeValueAsString(lista[6]);
       UcsawsVotante v = mapper.readValue(jsonStr7, UcsawsVotante.class);
-      
-      
+
+
       try {
-      votoDAO.VotarYActualizarVotante(pr, s , pa,prb, sb, pab,v);
+        votoDAO.VotarYActualizarVotante(pr, s, pa, prb, sb, pab, v);
       } catch (Exception e) {
         System.out.println(e);
-        
+
         ObjectMapper mapperObj = new ObjectMapper();
         jsonStr = mapperObj.writeValueAsString(e);
-        
+
         response.setCodigo(2244);
         response.setQuery_generico_response(jsonStr);
       } finally {
@@ -4241,12 +4252,38 @@ public class CanalizadorDAO {
       }
     }
 
+    else if (request.getTipo_query_generico() == 777) {
+
+      String jsonStr = null;
+      DataSource ds = (DataSource) appContext.getBean("dataSource");
+      Connection c= null;
+      try {
+        c = ds.getConnection();
+      } catch (Exception e) {
+        System.out.println(e);
+      }
+
+      
+
+
+      try {
+        ObjectMapper mapperObj = new ObjectMapper();
+        jsonStr = mapperObj.writeValueAsString(c);
+      } catch (Exception e) {
+        System.out.println(e);
+        response.setCodigo(2244);
+        response.setQuery_generico_response("NO");
+      } finally {
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
 
     return response;
 
   }
-  
-  
+
 
   public static JSONObject objectToJSONObject(Object object) {
     Object json = null;
