@@ -44,6 +44,8 @@ public class UcsawsMiembroMesa implements java.io.Serializable {
   @JoinColumn(name = "id_tipo_miembro_mesa", referencedColumnName = "id_tipo_miembro_mesa")
   private UcsawsTipoMiembroMesa miembroMesa;
   
+  
+ 
   public UcsawsTipoMiembroMesa getMiembroMesa() {
     return miembroMesa;
   }

@@ -24,29 +24,31 @@
 		<class>py.edu.ucsa.voto.entity.UcsawsNacionalidad</class>
 		<class>py.edu.ucsa.voto.entity.UcsawsPais</class>
 		<class>py.edu.ucsa.voto.entity.UcsawsGenero</class>
-		
+
 		<class>py.edu.ucsa.voto.entity.UcsawsVotante</class>
 		<class>py.edu.ucsa.voto.entity.UcsawsDepartamento</class>
 		<class>py.edu.ucsa.voto.entity.UcsawsDistrito</class>
 		<class>py.edu.ucsa.voto.entity.UcsawsZona</class>
 		<class>py.edu.ucsa.voto.entity.UcsawsLocal</class>
 		<class>py.edu.ucsa.voto.entity.UcsawsMesa</class>
-		
+
 		<class>py.edu.ucsa.voto.entity.UcsawsTipoLista</class>
 		<class>py.edu.ucsa.voto.entity.UcsawsListas</class>
-		
+
 		<class>py.edu.ucsa.voto.entity.UcsawsVotos</class>
-		
+
 		<class>py.edu.ucsa.voto.entity.UcsawsVotosBlanco</class>
-		
+
 		<class>py.edu.ucsa.voto.entity.UcsawsCandidatos</class>
-		
+
 		<class>py.edu.ucsa.voto.entity.UcsawsVigenciaHorarioXPais</class>
 		<class>py.edu.ucsa.voto.entity.UcsawsTipoActa</class>
-		
+		<class>py.edu.ucsa.voto.entity.UcsawsActas</class>
+
 		<class>py.edu.ucsa.voto.entity.UcsawsTipoMiembroMesa</class>
-		
-		
+		<class>py.edu.ucsa.voto.entity.UcsawsMiembroMesa</class>
+
+
 		<exclude-unlisted-classes />
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />

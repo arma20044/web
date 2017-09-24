@@ -18,6 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -96,9 +97,22 @@ public class UcsawsPersona implements java.io.Serializable {
 	@Column(name = "email", nullable = true)
 	private String email;
 	
+	@Transient
+	private String datosPersonales;
+	
+	
+	
+	
 	
 
-	public UcsawsPersona() {
+	public String getDatosPersonales() {
+    return nombre + " " + apellido;
+  }
+
+
+
+
+  public UcsawsPersona() {
 	}
 
 	public UcsawsPersona(Integer idPersona, UcsawsGenero ucsawsGenero,
