@@ -97,6 +97,26 @@ public class MiembroMesaDAO extends AbstractSpringDAO implements MiembroMesaDAOI
 			 
 		 
 	}
+	
+	   public List<UcsawsMiembroMesa> obtenerMiembroMesaByIdEventoByActa(Integer idEvento, Integer idActa){
+	        List<UcsawsMiembroMesa> resultado;
+	        UcsawsMiembroMesa e = new UcsawsMiembroMesa();
+	        String hql;
+	        hql = "select obj from " + claseEntidad + " obj where  idEvento.idEvento =:idEvento"
+	            + " and obj.acta.idActa =:idActa";
+	        Query query = em.createQuery(hql);
+	        query.setParameter("idEvento", idEvento);
+	        query.setParameter("idActa", idActa);
+	        resultado = query.getResultList();
+	        if (resultado.size()==0){
+	            return new ArrayList<UcsawsMiembroMesa>();
+	        }
+	        else
+	         
+	            return resultado;
+	             
+	         
+	    }
 
 
 

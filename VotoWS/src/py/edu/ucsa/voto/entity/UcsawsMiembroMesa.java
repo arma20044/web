@@ -44,8 +44,22 @@ public class UcsawsMiembroMesa implements java.io.Serializable {
   @JoinColumn(name = "id_tipo_miembro_mesa", referencedColumnName = "id_tipo_miembro_mesa")
   private UcsawsTipoMiembroMesa miembroMesa;
   
+  @ManyToOne(fetch = FetchType.EAGER)
+  @Cascade(value = { CascadeType.LOCK })
+  @JoinColumn(name = "id_acta", referencedColumnName = "id_acta")
+  private UcsawsActas acta;
+  
+  
   
  
+  public UcsawsActas getActa() {
+    return acta;
+  }
+
+  public void setActa(UcsawsActas acta) {
+    this.acta = acta;
+  }
+
   public UcsawsTipoMiembroMesa getMiembroMesa() {
     return miembroMesa;
   }

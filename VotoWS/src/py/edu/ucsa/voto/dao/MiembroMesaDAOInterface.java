@@ -22,5 +22,7 @@ public interface MiembroMesaDAOInterface extends DAOInterface {
 
 
   public List<UcsawsMiembroMesa> obtenerMiembroMesaByIdEvento(Integer idEvento);
+  
+  public List<UcsawsMiembroMesa> obtenerMiembroMesaByIdEventoByActa(Integer idEvento, Integer idActa);
 
 }

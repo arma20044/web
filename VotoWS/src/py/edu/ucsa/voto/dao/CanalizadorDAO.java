@@ -4843,6 +4843,53 @@ public class CanalizadorDAO {
       }
 
     }
+    
+    
+    // MIEMBRO MESA BY ID EVENTO BY ACTA
+    else if (request.getTipo_query_generico() == 149) {
+      ObjectMapper mapper = new ObjectMapper();
+      List<Integer> parametro = mapper.readValue(request.getQuery_generico(), List.class);
+      Integer idEvento = parametro.get(0);
+      Integer idActa = parametro.get(1);
+      
+      List<UcsawsMiembroMesa> miembroMesa = new ArrayList<UcsawsMiembroMesa>();
+      miembroMesa = miembroMesaDAO.obtenerMiembroMesaByIdEventoByActa(idEvento, idActa);
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(miembroMesa.isEmpty())) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(miembroMesa);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(miembroMesa);
+          System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
      
     
     
