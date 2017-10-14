@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.junit.Ignore;
 
 @Entity
 @Table(name = "ucsaws_actas")
@@ -71,6 +72,20 @@ public class UcsawsActas implements java.io.Serializable {
   
   @Column(name = "usuario_upd", nullable = true)
   private String usuarioUpd;
+  
+   
+  @ManyToOne(fetch = FetchType.EAGER)
+  @Cascade(value = { CascadeType.LOCK })
+  @JoinColumn(name = "id_acta_finalizada", referencedColumnName = "id_acta")
+  private UcsawsActas actaFinalizada;
+  
+  public UcsawsActas getActaFinalizada() {
+    return actaFinalizada;
+  }
+
+  public void setActaFinalizada(UcsawsActas actaFinalizada) {
+    this.actaFinalizada = actaFinalizada;
+  }
 
   public Integer getIdActa() {
     return idActa;
