@@ -162,7 +162,7 @@ public class CanalizadorDAO {
         // printter
 
         ObjectMapper mapper2 = new ObjectMapper();
-        // System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(eventoSinMapeo));
+        // //System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(eventoSinMapeo));
 
         // mapperObj.setVisibility(JsonMethod.FIELD, Visibility.ANY);
         // mapperObj.enable(DeserializationConfig.);
@@ -171,9 +171,9 @@ public class CanalizadorDAO {
           // get Employee object as a json string
           String json = mapper.writeValueAsString(r);
           mapperObj.writeValue(System.out, r);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
           jsonStr = mapperObj.writeValueAsString(r);
-          System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(r));
+          //System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(r));
 
         } catch (IOException e) {
           // TODO Auto-generated catch block
@@ -218,7 +218,7 @@ public class CanalizadorDAO {
       try {
         eventoDAO.delete(evento);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -249,7 +249,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(votante);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException exx) {
           // TODO Auto-generated catch block
           exx.printStackTrace();
@@ -263,7 +263,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(votante);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException ex) {
           // TODO Auto-generated catch block
           ex.printStackTrace();
@@ -298,7 +298,7 @@ public class CanalizadorDAO {
         // printter
 
         ObjectMapper mapper2 = new ObjectMapper();
-        // System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(eventoSinMapeo));
+        // //System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(eventoSinMapeo));
 
         // mapperObj.setVisibility(JsonMethod.FIELD, Visibility.ANY);
         // mapperObj.enable(DeserializationConfig.);
@@ -307,9 +307,9 @@ public class CanalizadorDAO {
           // get Employee object as a json string
           String json = mapper.writeValueAsString(r);
           mapperObj.writeValue(System.out, r);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
           jsonStr = mapperObj.writeValueAsString(r);
-          System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(r));
+          //System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(r));
 
         } catch (IOException e) {
           // TODO Auto-generated catch block
@@ -351,7 +351,7 @@ public class CanalizadorDAO {
         // printter
 
         ObjectMapper mapper2 = new ObjectMapper();
-        // System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(eventoSinMapeo));
+        // //System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(eventoSinMapeo));
 
         // mapperObj.setVisibility(JsonMethod.FIELD, Visibility.ANY);
         // mapperObj.enable(DeserializationConfig.);
@@ -360,9 +360,9 @@ public class CanalizadorDAO {
           // get Employee object as a json string
           String json = mapper.writeValueAsString(r);
           mapperObj.writeValue(System.out, r);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
           jsonStr = mapperObj.writeValueAsString(r);
-          System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(r));
+          //System.out.println(mapper2.writerWithDefaultPrettyPrinter().writeValueAsString(r));
 
         } catch (IOException e) {
           // TODO Auto-generated catch block
@@ -396,7 +396,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(users);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -410,7 +410,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(users);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -447,13 +447,13 @@ public class CanalizadorDAO {
           ObjectMapper mapperObj = new ObjectMapper();
           String json = mapper.writeValueAsString(r);
           mapperObj.writeValue(System.out, r);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
           jsonStr = mapperObj.writeValueAsString(r);
-          System.out.println(mapperObj.writerWithDefaultPrettyPrinter().writeValueAsString(r));
+          //System.out.println(mapperObj.writerWithDefaultPrettyPrinter().writeValueAsString(r));
 
           response.setQuery_generico_response(jsonStr);
         } catch (Exception e) {
-          System.out.println(e);
+          //System.out.println(e);
         }
       }
     } else if (request.getTipo_query_generico() == 10) {
@@ -487,7 +487,7 @@ public class CanalizadorDAO {
 
           response.setQuery_generico_response(jsonStr);
         } catch (Exception e) {
-          System.out.println(e);
+          //System.out.println(e);
         }
       }
     } else if (request.getTipo_query_generico() == 14) {
@@ -557,7 +557,7 @@ public class CanalizadorDAO {
 
           response.setQuery_generico_response(jsonStr);
         } catch (Exception e) {
-          System.out.println(e);
+          //System.out.println(e);
         }
       }
     } else if (request.getTipo_query_generico() == 22) {
@@ -651,7 +651,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -665,7 +665,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -700,7 +700,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -714,7 +714,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -749,7 +749,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -763,7 +763,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -797,7 +797,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -811,7 +811,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -845,7 +845,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -859,7 +859,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -893,7 +893,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -907,7 +907,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -926,7 +926,7 @@ public class CanalizadorDAO {
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
 
-      System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
+      //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
 
       UcsawsEvento evento = mapper.readValue(jsonInString, UcsawsEvento.class);
 
@@ -943,7 +943,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -975,7 +975,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -989,7 +989,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(evento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1023,7 +1023,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(genero);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1037,7 +1037,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(genero);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1071,7 +1071,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(genero);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1085,7 +1085,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(genero);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1121,7 +1121,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(genero);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1135,7 +1135,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(genero);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1178,7 +1178,7 @@ public class CanalizadorDAO {
       try {
         generoDAO.delete(genero);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -1209,7 +1209,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(genero.get(0));
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1223,7 +1223,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(genero.get(0));
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1258,7 +1258,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(persona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1272,7 +1272,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(persona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1307,7 +1307,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(pais);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1321,7 +1321,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(pais);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1355,7 +1355,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(nacionalidad);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1369,7 +1369,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(nacionalidad);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1405,7 +1405,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(pais);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1419,7 +1419,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(pais);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1476,7 +1476,7 @@ public class CanalizadorDAO {
       try {
         // get Employee object as a json string
         jsonStr = mapperObj.writeValueAsString(nacionalidad);
-        System.out.println(jsonStr);
+        //System.out.println(jsonStr);
       } catch (IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -1507,7 +1507,7 @@ public class CanalizadorDAO {
       try {
         // get Employee object as a json string
         jsonStr = mapperObj.writeValueAsString(pais);
-        System.out.println(jsonStr);
+        //System.out.println(jsonStr);
       } catch (IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -1567,7 +1567,7 @@ public class CanalizadorDAO {
       try {
         // get Employee object as a json string
         jsonStr = mapperObj.writeValueAsString(n);
-        System.out.println(jsonStr);
+        //System.out.println(jsonStr);
       } catch (IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -1589,7 +1589,7 @@ public class CanalizadorDAO {
       try {
         nacionalidadDAO.delete(nacionalidad);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -1621,7 +1621,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(nacionalidad);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1635,7 +1635,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(nacionalidad);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1690,7 +1690,7 @@ public class CanalizadorDAO {
       try {
         // get Employee object as a json string
         jsonStr = mapperObj.writeValueAsString(n);
-        System.out.println(jsonStr);
+        //System.out.println(jsonStr);
       } catch (IOException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
@@ -1726,7 +1726,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(pais);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1740,7 +1740,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(pais);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1795,7 +1795,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(persona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1809,7 +1809,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(persona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1830,7 +1830,7 @@ public class CanalizadorDAO {
       try {
         personaDAO.delete(persona);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -1862,7 +1862,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(persona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1876,7 +1876,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(new UcsawsPersona());
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1895,7 +1895,7 @@ public class CanalizadorDAO {
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
 
-      System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
+      //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
 
       UcsawsPersona persona = mapper.readValue(jsonInString, UcsawsPersona.class);
 
@@ -1909,7 +1909,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(persona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1928,7 +1928,7 @@ public class CanalizadorDAO {
       try {
         paisDAO.delete(pais);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -1963,7 +1963,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoEvento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -1977,7 +1977,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoEvento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2019,7 +2019,7 @@ public class CanalizadorDAO {
       try {
         tipoEventoDAO.delete(tipoEvento);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -2046,7 +2046,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(departamento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2060,7 +2060,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(departamento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2104,7 +2104,7 @@ public class CanalizadorDAO {
       try {
         departamentoDAO.delete(departamento);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -2130,7 +2130,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(distrito);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2144,7 +2144,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(distrito);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2172,7 +2172,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(departamento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2186,7 +2186,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(departamento);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2229,7 +2229,7 @@ public class CanalizadorDAO {
       try {
         distritoDAO.delete(distrito);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -2254,7 +2254,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(zona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2268,7 +2268,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(zona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2311,7 +2311,7 @@ public class CanalizadorDAO {
       try {
         zonaDAO.delete(zona);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -2336,7 +2336,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(distrito);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2350,7 +2350,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(distrito);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2377,7 +2377,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(local);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2391,7 +2391,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(local);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2418,7 +2418,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(local);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2432,7 +2432,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(local);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2476,7 +2476,7 @@ public class CanalizadorDAO {
       try {
         localDAO.delete(local);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -2501,7 +2501,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(zona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2515,7 +2515,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(zona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2544,7 +2544,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(distrito);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2558,7 +2558,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(distrito);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2585,7 +2585,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(zona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2599,7 +2599,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(zona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2627,7 +2627,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(local);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2641,7 +2641,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(local);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2669,7 +2669,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(local);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2683,7 +2683,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(local);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2710,7 +2710,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(mesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2724,7 +2724,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(mesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2767,7 +2767,7 @@ public class CanalizadorDAO {
       try {
         mesaDAO.delete(mesa);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -2792,7 +2792,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(mesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2806,7 +2806,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(mesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2835,7 +2835,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(nacionalidad);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2849,7 +2849,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(nacionalidad);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2876,7 +2876,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(pais);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2890,7 +2890,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(pais);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2911,7 +2911,7 @@ public class CanalizadorDAO {
       try {
         tipoListaDAO.delete(tipoLista);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -2937,7 +2937,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoLista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2951,7 +2951,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoLista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2979,7 +2979,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoLista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -2993,7 +2993,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoLista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3044,7 +3044,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3058,7 +3058,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3078,7 +3078,7 @@ public class CanalizadorDAO {
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
 
-      System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
+      //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
 
       UcsawsListas lista = mapper.readValue(jsonInString, UcsawsListas.class);
 
@@ -3092,7 +3092,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3135,7 +3135,7 @@ public class CanalizadorDAO {
       try {
         listasDAO.delete(lista);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -3161,7 +3161,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3175,7 +3175,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3202,7 +3202,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3216,7 +3216,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3235,7 +3235,7 @@ public class CanalizadorDAO {
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
 
-      System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
+      //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
 
       UcsawsCandidatos candidato = mapper.readValue(jsonInString, UcsawsCandidatos.class);
 
@@ -3249,7 +3249,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(candidato);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3294,7 +3294,7 @@ public class CanalizadorDAO {
       try {
         candidatosDAO.delete(candidato);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -3320,7 +3320,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(candidato);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3334,7 +3334,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(candidato);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3371,7 +3371,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(persona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3385,7 +3385,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(persona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3419,7 +3419,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(user);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3433,7 +3433,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(user);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3455,7 +3455,7 @@ public class CanalizadorDAO {
       try {
         usersDAO.delete(user);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -3479,7 +3479,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(user);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3493,7 +3493,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(user);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3540,7 +3540,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(roles);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3554,7 +3554,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(roles);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3581,7 +3581,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(rol);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3595,7 +3595,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(rol);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3642,7 +3642,7 @@ public class CanalizadorDAO {
       try {
         rolesDAO.delete(rol);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -3674,7 +3674,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(persona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3688,7 +3688,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(persona);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3722,7 +3722,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(user);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3736,7 +3736,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(user);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3770,7 +3770,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(votante);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3784,7 +3784,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(votante);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3831,7 +3831,7 @@ public class CanalizadorDAO {
       try {
         votanteDAO.delete(votante);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -3856,7 +3856,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(votante);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3870,7 +3870,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(votante);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3897,7 +3897,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(mesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3911,7 +3911,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(mesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3931,7 +3931,7 @@ public class CanalizadorDAO {
       ObjectMapper mapper = new ObjectMapper();
       String jsonInString = request.getQuery_generico();
 
-      System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
+      //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(jsonInString));
 
       UcsawsVotante votante = mapper.readValue(jsonInString, UcsawsVotante.class);
 
@@ -3945,7 +3945,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(votante);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3977,7 +3977,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -3991,7 +3991,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4050,7 +4050,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(conteoVoto);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4064,7 +4064,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(conteoVoto);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4093,7 +4093,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(vigencia);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4107,7 +4107,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(vigencia);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4142,7 +4142,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(vigencia);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4156,7 +4156,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(vigencia);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4207,7 +4207,7 @@ public class CanalizadorDAO {
       try {
         vigenciaDAO.delete(vigencia);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -4255,7 +4255,7 @@ public class CanalizadorDAO {
       try {
         votoDAO.VotarYActualizarVotante(pr, s, pa, prb, sb, pab, v);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
 
         ObjectMapper mapperObj = new ObjectMapper();
         jsonStr = mapperObj.writeValueAsString(e);
@@ -4276,7 +4276,7 @@ public class CanalizadorDAO {
       try {
         c = ds.getConnection();
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
       }
 
       
@@ -4286,7 +4286,7 @@ public class CanalizadorDAO {
         ObjectMapper mapperObj = new ObjectMapper();
         jsonStr = mapperObj.writeValueAsString(c);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -4304,7 +4304,7 @@ public class CanalizadorDAO {
       try {
         tipoActasDAO.delete(tipoActa);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -4330,7 +4330,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoActa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4344,7 +4344,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoActa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4372,7 +4372,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoActa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4386,7 +4386,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoActa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4429,7 +4429,7 @@ public class CanalizadorDAO {
       try {
         tipoMiembroMesaDAO.delete(tipoMiembroMesa);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -4454,7 +4454,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoMiembroMesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4468,7 +4468,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoMiembroMesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4495,7 +4495,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoMiembroMesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4509,7 +4509,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(tipoMiembroMesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4553,7 +4553,7 @@ public class CanalizadorDAO {
       try {
         miembroMesaDAO.delete(miembroMesa);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -4579,7 +4579,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(miembroMesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4593,7 +4593,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(miembroMesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4621,7 +4621,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(miembroMesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4635,7 +4635,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(miembroMesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4680,7 +4680,7 @@ public class CanalizadorDAO {
       try {
         actaDAO.delete(acta);
       } catch (Exception e) {
-        System.out.println(e);
+        //System.out.println(e);
         response.setCodigo(2244);
         response.setQuery_generico_response("NO");
       } finally {
@@ -4705,7 +4705,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(actas);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4719,7 +4719,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(actas);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4746,7 +4746,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(actas);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4760,7 +4760,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(actas);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4818,7 +4818,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4832,7 +4832,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(lista);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4865,7 +4865,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(miembroMesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
@@ -4879,7 +4879,7 @@ public class CanalizadorDAO {
         try {
           // get Employee object as a json string
           jsonStr = mapperObj.writeValueAsString(miembroMesa);
-          System.out.println(jsonStr);
+          //System.out.println(jsonStr);
         } catch (IOException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();

@@ -39,7 +39,7 @@
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 				<property name="generateDdl" value="true" />
-				<property name="showSql" value="true"></property>
+				<property name="showSql" value="false"></property>
 			</bean>
 		</property>
 		<property name="persistenceUnitName" value="simple-jpa" />
