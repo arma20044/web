@@ -231,4 +231,18 @@ public class VotoDAO extends AbstractSpringDAO implements VotoDAOInterface {
     return convertedLong;
 
 }
-}
+  
+  
+  public List<Object> nativo(String id){
+    
+    String sql = "select sum(a.c) from " +
+" (select id_mesa b ,count(*) c from ucsaws_votante " + 
+" where sufrago = 1 and id_evento = " + id +
+"group by id_mesa) a";
+    // sq.addScalar("system_datetime", Hibernate.TIMESTAMP);
+    return em.createNativeQuery(sql).getResultList();
+    
+  
+  }
+    
+  }

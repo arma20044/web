@@ -4890,6 +4890,53 @@ public class CanalizadorDAO {
       }
 
     }
+    
+    
+    //para contar cantidad de votos de la talba VOTANTES HABILITADOS
+    else if (request.getTipo_query_generico() == 150) {
+      ObjectMapper mapper = new ObjectMapper();
+      String idEvento = mapper.readValue(request.getQuery_generico(), String.class);
+
+      
+      //List<UcsawsMiembroMesa> miembroMesa = new ArrayList<UcsawsMiembroMesa>();
+      List<Object> votantesHabilitadosConteo= votoDAO.nativo(idEvento);
+     // List<Object> 
+
+      // users = usersDAO.consultarUsuario(lista.get(0), lista.get(1));
+
+      if (!(votantesHabilitadosConteo.isEmpty())) {
+
+        // parseo json
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(votantesHabilitadosConteo.toString());
+          //System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      } else {
+        ObjectMapper mapperObj = new ObjectMapper();
+        String jsonStr = "";
+        try {
+          // get Employee object as a json string
+          jsonStr = mapperObj.writeValueAsString(votantesHabilitadosConteo);
+          //System.out.println(jsonStr);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+
+        response.setCodigo(2244);
+        response.setQuery_generico_response(jsonStr);
+      }
+
+    }
      
     
     

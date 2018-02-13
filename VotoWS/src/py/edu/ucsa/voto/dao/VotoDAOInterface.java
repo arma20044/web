@@ -30,5 +30,7 @@ public interface VotoDAOInterface extends DAOInterface {
   
   
   public Integer conteoVotosXMesaXEvento(Integer idMesa, Integer idEvento);
+  
+  public List<Object> nativo(String id);
 
 }
