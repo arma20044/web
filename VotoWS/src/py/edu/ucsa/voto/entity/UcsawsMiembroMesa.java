@@ -49,9 +49,9 @@ public class UcsawsMiembroMesa implements java.io.Serializable {
   @JoinColumn(name = "id_acta", referencedColumnName = "id_acta")
   private UcsawsActas acta;
   
-  //@ManyToOne(fetch = FetchType.EAGER)
-  //@Cascade(value = { CascadeType.LOCK })
-  //@JoinColumn(name = "id_lista", referencedColumnName = "id_lista")
+  @ManyToOne(fetch = FetchType.EAGER)
+  @Cascade(value = { CascadeType.LOCK })
+  @JoinColumn(name = "id_lista", referencedColumnName = "id_lista")
   private UcsawsListas lista;
   
   
